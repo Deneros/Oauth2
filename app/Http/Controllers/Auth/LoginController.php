@@ -25,31 +25,26 @@ class LoginController extends Controller
     {
         $user = Socialite::driver('google')->stateless()->user();
 
-        dd($user);
+        dd($user->user['given_name']);
 
-        // Comprueba si el usuario existe en tu base de datos
-        $existingUser = User::where('email', $user->getEmail())->first();
+        $existing_user = User::where('email', $user->getEmail())->first();
 
-        if ($existingUser) {
-            // Autentica al usuario existente
-            auth()->login($existingUser, true);
+        if ($existing_user) {
+            auth()->login($existing_user, true);
         } else {
-            // Crea un nuevo usuario en tu base de datos
-            $newUser = new User();
-            $newUser->name = $user->getName();
-            $newUser->email = $user->getEmail();
-            // ...
-            $newUser->save();
+            $new_user = new User();
+            $new_user->name = $user->getName();
+            $new_user->email = $user->getEmail();
+            $new_user->save();
 
-            // Autentica al nuevo usuario
-            auth()->login($newUser, true);
+            auth()->login($new_user, true);
         }
 
-        // Redirige al usuario a la página de inicio
         return redirect('/');
     }
 
-    public function auth(){
+    public function auth()
+    {
         echo 'hola';
     }
 }
