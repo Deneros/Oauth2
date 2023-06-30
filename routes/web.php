@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\FormController;
+use App\Http\Controllers\Auth\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +22,7 @@ use App\Http\Controllers\FormController;
 
 
 Route::get('/', [LoginController::class, 'index'])->name('login');
-Route::get('/login', [LoginController::class, 'index']);
+Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::get('login/ google', [LoginController::class, 'redirectToGoogle'])->name('login.google');
 Route::get('login/google/callback', [LoginController::class, 'handleGoogleCallback']);
 
