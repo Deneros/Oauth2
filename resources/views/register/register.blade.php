@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Iniciar sesión</title>
+    <title>Registro</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -33,6 +33,7 @@
             margin-bottom: 5px;
         }
 
+        input[type="text"],
         input[type="email"],
         input[type="password"] {
             width: 100%;
@@ -43,14 +44,7 @@
             box-sizing: border-box;
         }
 
-        .button-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 20px;
-        }
-
-        .button-container button {
+        button {
             background-color: #4caf50;
             color: #fff;
             border: none;
@@ -60,48 +54,21 @@
             font-size: 16px;
         }
 
-        .button-container button:hover {
+        button:hover {
             background-color: #45a049;
-        }
-
-        .button-container a.register-btn {
-            background-color: #2196f3;
-            color: #fff;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-
-        .button-container a.register-btn:hover {
-            background-color: #0b7dda;
-        }
-
-        .button-container a.google-btn {
-            background-color: #f44336;
-            color: #fff;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-
-        .button-container a.google-btn:hover {
-            background-color: #c62828;
-        }
-
-        hr {
-            margin-top: 20px;
-            border: none;
-            border-top: 1px solid #ccc;
         }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <h1>Iniciar sesión</h1>
+        <h1>Registro</h1>
 
-        <form method="POST" action="{{ route('login') }}">
+        <form method="POST" action="{{ route('register') }}">
             @csrf
+
+            <label for="name">Nombre:</label>
+            <input type="text" name="name" id="name" required>
 
             <label for="email">Correo electrónico:</label>
             <input type="email" name="email" id="email" required>
@@ -109,17 +76,11 @@
             <label for="password">Contraseña:</label>
             <input type="password" name="password" id="password" required>
 
-            <div class="button-container">
-                <button type="submit">Iniciar sesión</button>
-                <a href="{{ route('register') }}" class="register-btn">Registrarse</a>
-            </div>
+            <label for="password_confirmation">Confirmar contraseña:</label>
+            <input type="password" name="password_confirmation" id="password_confirmation" required>
+
+            <button type="submit">Registrarse</button>
         </form>
-
-        <hr>
-
-        <div class="google-login">
-            <a href="{{ route('login.google') }}" class="google-btn">Iniciar sesión con Google</a>
-        </div>
     </div>
 </body>
 

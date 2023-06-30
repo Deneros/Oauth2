@@ -103,7 +103,7 @@
             </div>
 
             <div class="form-group">
-                <label for="gender">Genero:</label>
+                <label for="gender">Género:</label>
                 <select name="gender" id="gender">
                     <option value="Masculino">Masculino</option>
                     <option value="Femenino">Femenino</option>
@@ -174,30 +174,30 @@
             <div class="form-group">
                 <label for="children">Hijos:</label>
                 <select name="children" id="children">
-                    <option value="Si">Si</option>
+                    <option value="Si">Sí</option>
                     <option value="No">No</option>
                 </select>
             </div>
 
             <div class="form-group">
-                <label for="number_of_children">Cuantos hijos tiene:</label>
+                <label for="number_of_children">Cuántos hijos tiene:</label>
                 <input type="number" name="number_of_children" id="number_of_children" required>
             </div>
 
             <div class="form-group">
-                <label for="children_living_with_you">Cuantos viven con usted:</label>
+                <label for="children_living_with_you">Cuántos viven con usted:</label>
                 <input type="number" name="children_living_with_you" id="children_living_with_you" required>
             </div>
 
             <div class="form-group">
-                <label for="adult_children">Cuantos son mayores de edad:</label>
+                <label for="adult_children">Cuántos son mayores de edad:</label>
                 <input type="number" name="adult_children" id="adult_children" required>
             </div>
 
             <div class="form-group">
                 <label for="elections_2022">Votó en las anteriores elecciones del 2022 para congreso y presidencia?</label>
                 <select name="elections_2022" id="elections_2022">
-                    <option value="Si">Si</option>
+                    <option value="Si">Sí</option>
                     <option value="No">No</option>
                 </select>
             </div>
@@ -205,7 +205,7 @@
             <div class="form-group">
                 <label for="elections_2019">Votó en las anteriores elecciones del 2019 para alcaldía y gobernación?</label>
                 <select name="elections_2019" id="elections_2019">
-                    <option value="Si">Si</option>
+                    <option value="Si">Sí</option>
                     <option value="No">No</option>
                 </select>
             </div>
@@ -213,23 +213,23 @@
             <div class="form-group">
                 <label for="dagua_id">Tiene inscrita la cédula en Dagua?</label>
                 <select name="dagua_id" id="dagua_id">
-                    <option value="Yes">Yes</option>
+                    <option value="Yes">Sí</option>
                     <option value="No">No</option>
                 </select>
             </div>
 
             <div class="form-group">
-                <label>Select 3 topics that you want the next mayor to prioritize:</label><br>
-                <input type="checkbox" name="topics[]" value="Agricultural Development">Desarrollo de la Agricultura<br>
-                <input type="checkbox" name="topics[]" value="Mining Development">Desarrollo de la Minería<br>
-                <input type="checkbox" name="topics[]" value="Economy">Economía<br>
-                <input type="checkbox" name="topics[]" value="Entrepreneurship">Emprendimiento<br>
-                <input type="checkbox" name="topics[]" value="Security">Seguridad<br>
-                <input type="checkbox" name="topics[]" value="Job Opportunities">Crear oportunidades de Empleo<br>
-                <input type="checkbox" name="topics[]" value="Education">Educación<br>
-                <input type="checkbox" name="topics[]" value="Health">Salud<br>
-                <input type="checkbox" name="topics[]" value="Recreation">Recreación<br>
-                <input type="checkbox" name="topics[]" value="Tourism">Turismo<br>
+                <label>Seleccione 3 temas que le gustaría que el próximo alcalde priorice:</label><br>
+                <input type="checkbox" name="topics[]" value="Desarrollo de la Agricultura">Desarrollo de la Agricultura<br>
+                <input type="checkbox" name="topics[]" value="Desarrollo de la Minería">Desarrollo de la Minería<br>
+                <input type="checkbox" name="topics[]" value="Economía">Economía<br>
+                <input type="checkbox" name="topics[]" value="Emprendimiento">Emprendimiento<br>
+                <input type="checkbox" name="topics[]" value="Seguridad">Seguridad<br>
+                <input type="checkbox" name="topics[]" value="Crear oportunidades de Empleo">Crear oportunidades de Empleo<br>
+                <input type="checkbox" name="topics[]" value="Educación">Educación<br>
+                <input type="checkbox" name="topics[]" value="Salud">Salud<br>
+                <input type="checkbox" name="topics[]" value="Recreación">Recreación<br>
+                <input type="checkbox" name="topics[]" value="Turismo">Turismo<br>
             </div>
         </div>
 
