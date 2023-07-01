@@ -16,15 +16,13 @@ use App\Http\Controllers\Auth\RegisterController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-
 Route::get('/', [LoginController::class, 'index'])->name('login');
+Route::post('login', [LoginController::class, 'auth'])->name('login.auth');
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
-Route::get('login/ google', [LoginController::class, 'redirectToGoogle'])->name('login.google');
-Route::get('login/google/callback', [LoginController::class, 'handleGoogleCallback']);
+Route::get('/login/google', [LoginController::class, 'redirectToGoogle'])->name('login.google');
+Route::get('/login/google/callback', [LoginController::class, 'handleGoogleCallback']);
 
-Route::get('/form', [FormController::class, 'index'])->name('formulario.index');
-Route::post('/form', [FormController::class, 'store'])->name('formulario.store');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/form', [FormController::class, 'index'])->name('form.index');
+    Route::post('/form', [FormController::class, 'store'])->name('form.store');
+});
