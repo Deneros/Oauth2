@@ -18,5 +18,6 @@ class DatabaseSeeder extends Seeder
         $this->call(GenderSeeder::class);
         $this->call(IdentificationTypeSeeder::class);
         $this->call(HousingTypeSeeder::class);
+        $this->call(TopicSeeder::class);
     }
 }
