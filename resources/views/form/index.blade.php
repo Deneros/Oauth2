@@ -94,6 +94,16 @@
         </div>
         @endif
 
+        @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
+
         <form method="POST" action="{{ route('form.store') }}">
             @csrf
 
@@ -101,8 +111,8 @@
                 <div class="form-group">
                     <label for="identification_type">Tipo de identificación:</label>
                     <select name="identification_type" id="identification_type">
-                        @foreach($identificationTypes as $option)
-                        <option value="{{ $option }}">{{ $option }}</option>
+                        @foreach($identificationTypes as $id => $name)
+                        <option value="{{ $id }}">{{ $name }}</option>
                         @endforeach
                     </select>
                     @error('identification_type')
@@ -121,8 +131,8 @@
                 <div class="form-group">
                     <label for="gender">Género:</label>
                     <select name="gender" id="gender">
-                        @foreach($genders as $option)
-                        <option value="{{ $option }}">{{ $option }}</option>
+                        @foreach($genders as $id => $option)
+                        <option value="{{ $id }}">{{ $option }}</option>
                         @endforeach
                     </select>
                     @error('gender')
@@ -195,8 +205,8 @@
                 <div class="form-group">
                     <label for="housing_type">Tipo de vivienda:</label>
                     <select name="housing_type" id="housing_type">
-                        @foreach($housingTypes as $option)
-                        <option value="{{ $option }}">{{ $option }}</option>
+                        @foreach($housingTypes as $id => $option)
+                        <option value="{{ $id }}">{{ $option }}</option>
                         @endforeach
                     </select>
                     @error('housing_type')
@@ -224,18 +234,27 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="number_of_children">Cuántos hijos tiene:</label>
-                    <input type="number" name="number_of_children" id="number_of_children">
+                    <label for="children_count">Cuántos hijos tiene:</label>
+                    <input type="number" name="children_count" id="children_count">
+                    @error('children_count')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="form-group">
-                    <label for="children_living_with_you">Cuántos viven con usted:</label>
-                    <input type="number" name="children_living_with_you" id="children_living_with_you">
+                    <label for="children_live_with">Cuántos viven con usted:</label>
+                    <input type="number" name="children_live_with" id="children_live_with">
+                    @error('children_live_with')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="form-group">
                     <label for="adult_children">Cuántos son mayores de edad:</label>
                     <input type="number" name="adult_children" id="adult_children">
+                    @error('adult_children')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="form-group">
@@ -261,28 +280,28 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="dagua_id">Tiene inscrita la cédula en Dagua?</label>
-                    <select name="dagua_id" id="dagua_id">
+                    <label for="registered_in_dagua">Tiene inscrita la cédula en Dagua?</label>
+                    <select name="registered_in_dagua" id="registered_in_dagua">
                         <option value="1">Sí</option>
                         <option value="0">No</option>
                     </select>
-                    @error('dagua_id')
+                    @error('registered_in_dagua')
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
 
                 <div class="form-group">
                     <label>Seleccione 3 temas que le gustaría que el próximo alcalde priorice:</label><br>
-                    <input type="checkbox" name="topics[]" value="Desarrollo de la Agricultura">Desarrollo de la Agricultura<br>
-                    <input type="checkbox" name="topics[]" value="Desarrollo de la Minería">Desarrollo de la Minería<br>
-                    <input type="checkbox" name="topics[]" value="Economía">Economía<br>
-                    <input type="checkbox" name="topics[]" value="Emprendimiento">Emprendimiento<br>
-                    <input type="checkbox" name="topics[]" value="Seguridad">Seguridad<br>
-                    <input type="checkbox" name="topics[]" value="Crear oportunidades de Empleo">Crear oportunidades de Empleo<br>
-                    <input type="checkbox" name="topics[]" value="Educación">Educación<br>
-                    <input type="checkbox" name="topics[]" value="Salud">Salud<br>
-                    <input type="checkbox" name="topics[]" value="Recreación">Recreación<br>
-                    <input type="checkbox" name="topics[]" value="Turismo">Turismo<br>
+                    <input type="checkbox" name="topics[]" value="1">Desarrollo de la Agricultura<br>
+                    <input type="checkbox" name="topics[]" value="2">Desarrollo de la Minería<br>
+                    <input type="checkbox" name="topics[]" value="3">Economía<br>
+                    <input type="checkbox" name="topics[]" value="4">Emprendimiento<br>
+                    <input type="checkbox" name="topics[]" value="5">Seguridad<br>
+                    <input type="checkbox" name="topics[]" value="6">Crear oportunidades de Empleo<br>
+                    <input type="checkbox" name="topics[]" value="7">Educación<br>
+                    <input type="checkbox" name="topics[]" value="8">Salud<br>
+                    <input type="checkbox" name="topics[]" value="9">Recreación<br>
+                    <input type="checkbox" name="topics[]" value="10">Turismo<br>
                     @if ($errors->has('topics'))
                     <div class="alert alert-danger">{{ $errors->first('topics') }}</div>
                     @endif
