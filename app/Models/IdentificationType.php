@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class IdentificationType extends Model
 {
-    // protected $table = 'identification_types';
+    use HasFactory;
 
     protected $fillable = [
         'name'
