@@ -100,7 +100,7 @@
     <div class="container">
         <h1>Iniciar sesión</h1>
 
-        <form method="POST" action="{{ route('login') }}">
+        <form method="POST" action="{{ route('login.auth') }}">
             @csrf
 
             <label for="email">Correo electrónico:</label>
