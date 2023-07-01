@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\HousingType;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class HousingTypeSeeder extends Seeder
@@ -15,14 +14,14 @@ class HousingTypeSeeder extends Seeder
      */
     public function run()
     {
-        $tipoViviendas = [
-            ['nombre' => 'Propia'],
-            ['nombre' => 'Familiar'],
-            ['nombre' => 'Arriendo'],
+        $housings = [
+            ['name' => 'Propia'],
+            ['name' => 'Familiar'],
+            ['name' => 'Arriendo'],
         ];
 
-        foreach ($tipoViviendas as $tipoVivienda) {
-            HousingType::create($tipoVivienda);
+        foreach ($housings as $housing) {
+            HousingType::create($housing);
         }
     }
 }

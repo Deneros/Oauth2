@@ -2,9 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\IdentificationType;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\IdentificationType;
 
 class IdentificationTypeSeeder extends Seeder
 {
@@ -15,13 +14,20 @@ class IdentificationTypeSeeder extends Seeder
      */
     public function run()
     {
-        $tipoIdentificaciones = [
-            ['nombre' => 'Cédula de ciudadanía'],
-            ['nombre' => 'Cédula de extranjería'],
+        $identificationTypes = [
+            ['name' => 'CC', 'description' => 'Cédula de ciudadanía'],
+            ['name' => 'CE', 'description' => 'Cédula de extranjería'],
+            ['name' => 'DN', 'description' => 'Dossiernumber'],
+            ['name' => 'NIT', 'description' => 'Número de identificación tributaria'],
+            ['name' => 'AS', 'description' => 'Adulto sin identificación'],
+            ['name' => 'MS', 'description' => 'Menor sin identificación'],
+            ['name' => 'ND', 'description' => 'No definido'],
+            ['name' => 'PA', 'description' => 'Pasaporte'],
+            ['name' => 'KVK', 'description' => 'KVK'],
         ];
 
-        foreach ($tipoIdentificaciones as $tipoIdentificacion) {
-            IdentificationType::create($tipoIdentificacion);
+        foreach ($identificationTypes as $identificationType) {
+            IdentificationType::create($identificationType);
         }
     }
 }
