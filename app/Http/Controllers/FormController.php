@@ -6,63 +6,88 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\FormData;
+use App\Models\Gender;
+use App\Models\IdentificationType;
+use App\Models\HousingType;
+use App\Models\Topic;
+
 
 
 class FormController extends Controller
 {
     public function index()
     {
-        return view('form.index');
+        $genders = Gender::pluck('name', 'id');
+        $identificationTypes = IdentificationType::pluck('name', 'id');
+        $housingTypes = HousingType::pluck('name', 'id');
+
+        return view('form.index', compact('genders', 'identificationTypes', 'housingTypes'));
     }
 
     public function store(Request $request)
     {
         $validated_data = $request->validate([
             'identification_number' => 'required|string',
-            'first_name' => 'required|string',
-            'last_name' => 'required|string',
             'date_of_birth' => 'required|date',
-            'birth_city' => 'required|string',
+            'birth_city' => 'nullable|string',
             'nationality' => 'required|string',
             'residence_address' => 'required|string',
+            'gender' => 'required|numeric',
+            'identification_type' => 'required|numeric',
+            'housing_type' => 'required|numeric',
             'neighborhood' => 'required|string',
-            'residence_location' => 'required|string',
+            'residence_location' => 'nullable|string',
             'phone_number' => 'required|string',
-            'email' => 'required|string|email',
-            'has_children' => 'required|boolean',
+            'dependents_count' => 'required|numeric',
+            'registered_in_dagua' => 'required|numeric',
+            'elections_2022' => 'required|boolean',
+            'elections_2019' => 'required|boolean',
+            'children' => 'required|boolean',
+            'children_count' => 'required_if:children,1|nullable|numeric',
+            'children_live_with' => 'required_if:children,1|nullable|numeric',
+            'adult_children' => 'required_if:children,1|nullable|numeric',
+            'topics' => 'required|array|min:3',
+            // 'topics.*' => 'in:Desarrollo de la Agricultura,Desarrollo de la Minería,Economía,Emprendimiento,Seguridad,Crear oportunidades de Empleo,Educación,Salud,Recreación,Turismo', 
+
         ]);
+
+        // dd($validated_data);
 
         $user_id = Auth::id();
 
         $form_data = new FormData();
 
         $form_data->user_id = $user_id;
+        $form_data->gender_id = $validated_data['gender'];
+        $form_data->housing_type_id  = $validated_data['housing_type'];
+        $form_data->identification_type_id = $validated_data['identification_type'];
         $form_data->identification_number = $validated_data['identification_number'];
-        $form_data->first_name = $validated_data['first_name'];
-        $form_data->last_name = $validated_data['last_name'];
-        $form_data->date_of_birth = $validated_data['date_of_birth'];
-        $form_data->birth_city = $validated_data['birth_city'];
+        $form_data->date_of_birth = date('Y-m-d', strtotime($validated_data['date_of_birth']));
+        $form_data->city_of_birth = $request->input('birth_city');
         $form_data->nationality = $validated_data['nationality'];
         $form_data->residence_address = $validated_data['residence_address'];
         $form_data->neighborhood = $validated_data['neighborhood'];
-        $form_data->residence_location = $validated_data['residence_location'];
-        $form_data->phone_number = $validated_data['phone_number'];
-        $form_data->email = $validated_data['email'];
-        $form_data->has_children = $validated_data['has_children'];
+        $form_data->place_of_residence = $request->input('residence_location');
+        $form_data->cellphone = $validated_data['phone_number'];
+        $form_data->dependents = $validated_data['dependents_count'];
+        $form_data->has_children = $validated_data['children'];
 
-        if ($validated_data['has_children']) {
+        if ($validated_data['children']) {
             $form_data->children_count = $request->input('children_count');
             $form_data->children_live_with = $request->input('children_live_with');
-            $form_data->adult_children_count = $request->input('adult_children_count');
+            $form_data->adult_children_count = $request->input('adult_children');
         }
 
-        $form_data->voted_congress_presidency_2022 = $request->input('voted_congress_presidency_2022');
-        $form_data->voted_mayor_governor_2019 = $request->input('voted_mayor_governor_2019');
+        $form_data->voted_2022_congress_presidency = $request->input('elections_2022');
+        $form_data->voted_2019_mayor_governor = $request->input('elections_2019');
 
         $form_data->registered_in_dagua = $request->input('registered_in_dagua');
 
         $form_data->save();
 
-        return redirect()->route('formulario.index')->with('success', 'The form has been submitted successfully.');
+        $topics = $request->input('topics');
+        $form_data->topics()->attach($topics);
+
+        return redirect()->route('form.index')->with('success', 'The form has been submitted successfully.');
     }
 }
