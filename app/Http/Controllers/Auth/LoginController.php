@@ -6,6 +6,10 @@ use App\Http\Controllers\Controller;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+
+
 
 
 class LoginController extends Controller
@@ -25,26 +29,32 @@ class LoginController extends Controller
     {
         $user = Socialite::driver('google')->stateless()->user();
 
-        dd($user->user['given_name']);
-
         $existing_user = User::where('email', $user->getEmail())->first();
 
         if ($existing_user) {
             auth()->login($existing_user, true);
         } else {
-            $new_user = new User();
-            $new_user->name = $user->getName();
-            $new_user->email = $user->getEmail();
-            $new_user->save();
+            $new_user = User::create([
+                'name' => $user->user['given_name'],
+                'family_name' => $user->user['family_name'],
+                'email' => $user->getEmail(),
+                'password' => Hash::make($user->id),
+            ]);
 
             auth()->login($new_user, true);
         }
 
-        return redirect('/');
+        return redirect('/form');
     }
 
-    public function auth()
+    public function auth(Request $request)
     {
-        echo 'hola';
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::attempt($credentials)) {
+            return redirect('/form');
+        } else {
+            return redirect()->back()->withErrors(['message' => 'Invalid credentials']);
+        }
     }
 }
