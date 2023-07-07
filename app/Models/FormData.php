@@ -47,4 +47,14 @@ class FormData extends Model
     {
         return $this->belongsToMany(Topic::class);
     }
+
+    public function cityOfBirth()
+    {
+        return $this->belongsTo(City::class, 'city_of_birth_id');
+    }
+
+    public function cityOfResidence()
+    {
+        return $this->belongsTo(City::class, 'place_of_residence_id');
+    }
 }
