@@ -9,7 +9,7 @@ use App\Models\FormData;
 use App\Models\Gender;
 use App\Models\IdentificationType;
 use App\Models\HousingType;
-use App\Models\Topic;
+use App\Models\City;
 
 
 
@@ -20,8 +20,9 @@ class FormController extends Controller
         $genders = Gender::pluck('name', 'id');
         $identificationTypes = IdentificationType::pluck('name', 'id');
         $housingTypes = HousingType::pluck('name', 'id');
+        $cities = City::orderBy('name')->pluck('name', 'id');
 
-        return view('form.index', compact('genders', 'identificationTypes', 'housingTypes'));
+        return view('form.index', compact('genders', 'identificationTypes', 'housingTypes', 'cities'));
     }
 
     public function store(Request $request)
@@ -29,14 +30,14 @@ class FormController extends Controller
         $validated_data = $request->validate([
             'identification_number' => 'required|string',
             'date_of_birth' => 'required|date',
-            'birth_city' => 'nullable|string',
+            'birth_city' => 'required|numeric',
             'nationality' => 'required|string',
             'residence_address' => 'required|string',
             'gender' => 'required|numeric',
             'identification_type' => 'required|numeric',
             'housing_type' => 'required|numeric',
             'neighborhood' => 'required|string',
-            'residence_location' => 'nullable|string',
+            'residence_location' => 'required|numeric',
             'phone_number' => 'required|string',
             'dependents_count' => 'required|numeric',
             'registered_in_dagua' => 'required|numeric',
@@ -63,11 +64,11 @@ class FormController extends Controller
         $form_data->identification_type_id = $validated_data['identification_type'];
         $form_data->identification_number = $validated_data['identification_number'];
         $form_data->date_of_birth = date('Y-m-d', strtotime($validated_data['date_of_birth']));
-        $form_data->city_of_birth = $request->input('birth_city');
+        $form_data->city_of_birth_id = $request->input('birth_city');
         $form_data->nationality = $validated_data['nationality'];
         $form_data->residence_address = $validated_data['residence_address'];
         $form_data->neighborhood = $validated_data['neighborhood'];
-        $form_data->place_of_residence = $request->input('residence_location');
+        $form_data->place_of_residence_id = $request->input('residence_location');
         $form_data->cellphone = $validated_data['phone_number'];
         $form_data->dependents = $validated_data['dependents_count'];
         $form_data->has_children = $validated_data['children'];
