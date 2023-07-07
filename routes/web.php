@@ -17,8 +17,9 @@ use App\Http\Controllers\Auth\RegisterController;
 */
 
 Route::get('/', [LoginController::class, 'index'])->name('login');
-Route::post('login', [LoginController::class, 'auth'])->name('login.auth');
+Route::post('/login', [LoginController::class, 'auth'])->name('login.auth');
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
+Route::post('/register/save', [RegisterController::class, 'register'])->name('register.save');
 Route::get('/login/google', [LoginController::class, 'redirectToGoogle'])->name('login.google');
 Route::get('/login/google/callback', [LoginController::class, 'handleGoogleCallback']);
 
