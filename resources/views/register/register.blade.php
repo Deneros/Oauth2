@@ -64,11 +64,24 @@
     <div class="container">
         <h1>Registro</h1>
 
-        <form method="POST" action="{{ route('register') }}">
+        @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
+
+        <form method="POST" action="{{ route('register.save') }}">
             @csrf
 
-            <label for="name">Nombre:</label>
+            <label for="name">Nombres:</label>
             <input type="text" name="name" id="name" required>
+
+            <label for="name">Apellidos:</label>
+            <input type="text" name="family_name" id="family_name" required>
 
             <label for="email">Correo electrónico:</label>
             <input type="email" name="email" id="email" required>
