@@ -25,11 +25,13 @@ return new class extends Migration
             $table->unsignedBigInteger('housing_type_id')->nullable();
             $table->foreign('housing_type_id')->references('id')->on('housing_types')->onDelete('cascade');
             $table->date('date_of_birth');
-            $table->string('city_of_birth');
+            $table->unsignedBigInteger('city_of_birth_id')->nullable();
+            $table->foreign('city_of_birth_id')->references('id')->on('cities')->onDelete('cascade');
             $table->string('nationality');
             $table->string('residence_address');
             $table->string('neighborhood');
-            $table->string('place_of_residence');
+            $table->unsignedBigInteger('place_of_residence_id')->nullable();
+            $table->foreign('place_of_residence_id')->references('id')->on('cities')->onDelete('cascade');
             $table->string('cellphone');
             $table->integer('dependents')->nullable();
             $table->boolean('has_children');
