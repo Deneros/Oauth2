@@ -19,5 +19,6 @@ class DatabaseSeeder extends Seeder
         $this->call(IdentificationTypeSeeder::class);
         $this->call(HousingTypeSeeder::class);
         $this->call(TopicSeeder::class);
+        $this->call(CitiesSeeder::class);
     }
 }
