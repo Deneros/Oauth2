@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,8 @@ Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/register/save', [RegisterController::class, 'register'])->name('register.save');
 Route::get('/login/google', [LoginController::class, 'redirectToGoogle'])->name('login.google');
 Route::get('/login/google/callback', [LoginController::class, 'handleGoogleCallback']);
+
+Route::get('/backstage', [UserController::class, 'index']);
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/form', [FormController::class, 'index'])->name('form.index');
