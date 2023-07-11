@@ -48,6 +48,11 @@ class FormData extends Model
         return $this->belongsToMany(Topic::class);
     }
 
+    public function moderator()
+    {
+        return $this->belongsTo(User::class, 'moderator_user_id');
+    }
+
     public function cityOfBirth()
     {
         return $this->belongsTo(City::class, 'city_of_birth_id');
