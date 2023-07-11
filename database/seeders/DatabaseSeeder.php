@@ -20,5 +20,6 @@ class DatabaseSeeder extends Seeder
         $this->call(HousingTypeSeeder::class);
         $this->call(TopicSeeder::class);
         $this->call(CitiesSeeder::class);
+        $this->call(RolesTableSeeder::class);
     }
 }
