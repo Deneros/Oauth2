@@ -4,20 +4,38 @@
 <head>
     <title>Iniciar sesión</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;1,500&display=swap');
+
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Montserrat', sans-serif;
             background-color: #f5f5f5;
             margin: 0;
             padding: 0;
         }
 
         .container {
-            max-width: 400px;
-            margin: 100px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-form {
+            font-weight: bold;
+            max-height: 90%;
+            max-width: 60%;
             background-color: #fff;
-            padding: 20px;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+        }
+
+        .form-content {
+            color: white;
+            padding: 2rem;
+            background-color: #361E7E;
+            width: 40%;
+            margin-right: 20px;
         }
 
         h1 {
@@ -76,7 +94,12 @@
             background-color: #0b7dda;
         }
 
-        .button-container a.google-btn {
+        .google-login {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .google-login a.google-btn {
             background-color: #f44336;
             color: #fff;
             padding: 10px 20px;
@@ -84,41 +107,63 @@
             border-radius: 5px;
         }
 
-        .button-container a.google-btn:hover {
+        .google-login a.google-btn:hover {
             background-color: #c62828;
         }
 
-        hr {
-            margin-top: 20px;
-            border: none;
-            border-top: 1px solid #ccc;
+        .image-container {
+            width: 60%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .image-container img {
+            object-fit: cover;
+            height: 100%;
+        }
+
+        .logo {
+            width: 150px;
+        }
+
+        .login-content{
+            margin-top: 6rem;
         }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <h1>Iniciar sesión</h1>
+        <div class="login-form">
+            <div class="form-content">
+                <img class="logo" src="{{ asset('img/logo-independientes-3.png') }}" alt="Imagen">
 
-        <form method="POST" action="{{ route('login.auth') }}">
-            @csrf
+                <div class="login-content">
+                    <h1>Iniciar Sesión</h1>
+                    <form method="POST" action="{{ route('login.auth') }}">
+                        @csrf
 
-            <label for="email">Correo electrónico:</label>
-            <input type="email" name="email" id="email" required>
+                        <label for="email">Correo electrónico:</label>
+                        <input type="email" name="email" id="email" required>
 
-            <label for="password">Contraseña:</label>
-            <input type="password" name="password" id="password" required>
+                        <label for="password">Contraseña:</label>
+                        <input type="password" name="password" id="password" required>
 
-            <div class="button-container">
-                <button type="submit">Iniciar sesión</button>
-                <a href="{{ route('register') }}" class="register-btn">Registrarse</a>
+                        <div class="button-container">
+                            <button type="submit">Iniciar sesión</button>
+                            <a href="{{ route('register') }}" class="register-btn">Registrarse</a>
+                        </div>
+                    </form>
+                    <hr>
+                    <div class="google-login">
+                        <a href="{{ route('login.google') }}" class="google-btn">Iniciar sesión con Google</a>
+                    </div>
+                </div>
             </div>
-        </form>
 
-        <hr>
-
-        <div class="google-login">
-            <a href="{{ route('login.google') }}" class="google-btn">Iniciar sesión con Google</a>
+            <div class="image-container">
+                <img src="{{ asset('img/lfb_1.png') }}" alt="Imagen">
+            </div>
         </div>
     </div>
 </body>
