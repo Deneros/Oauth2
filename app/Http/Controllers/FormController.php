@@ -52,12 +52,15 @@ class FormController extends Controller
 
         ]);
 
-        // dd($validated_data);
 
         $user_id = Auth::id();
+        $existing_user = FormData::where('identification_number', $validated_data['identification_number'])->first();
+
+        if ($existing_user) {
+            return redirect()->route('form.index')->with('warning', 'El número de identificación ya existe.');
+        }
 
         $form_data = new FormData();
-
         $form_data->user_id = $user_id;
         $form_data->gender_id = $validated_data['gender'];
         $form_data->housing_type_id  = $validated_data['housing_type'];
@@ -72,23 +75,19 @@ class FormController extends Controller
         $form_data->cellphone = $validated_data['phone_number'];
         $form_data->dependents = $validated_data['dependents_count'];
         $form_data->has_children = $validated_data['children'];
-
         if ($validated_data['children']) {
             $form_data->children_count = $request->input('children_count');
             $form_data->children_live_with = $request->input('children_live_with');
             $form_data->adult_children_count = $request->input('adult_children');
         }
-
         $form_data->voted_2022_congress_presidency = $request->input('elections_2022');
         $form_data->voted_2019_mayor_governor = $request->input('elections_2019');
-
         $form_data->registered_in_dagua = $request->input('registered_in_dagua');
-
         $form_data->save();
 
         $topics = $request->input('topics');
         $form_data->topics()->attach($topics);
 
-        return redirect()->route('form.index')->with('success', 'The form has been submitted successfully.');
+        return redirect()->route('form.index')->with('success', 'El formulario fue guardado correctamente');
     }
 }
