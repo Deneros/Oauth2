@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('identification_number');
-            $table->unsignedBigInteger('identification_type_id')->unique();
+            $table->string('identification_number')->unique();
+            $table->unsignedBigInteger('identification_type_id');
             $table->foreign('identification_type_id')->references('id')->on('identification_types')->onDelete('cascade');
             $table->unsignedBigInteger('gender_id')->nullable();
             $table->foreign('gender_id')->references('id')->on('genders')->onDelete('cascade');
@@ -41,6 +41,8 @@ return new class extends Migration
             $table->boolean('voted_2022_congress_presidency')->nullable();
             $table->boolean('voted_2019_mayor_governor')->nullable();
             $table->boolean('registered_in_dagua')->nullable();
+            $table->unsignedBigInteger('moderator_id');
+            $table->foreign('moderator_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -20,7 +20,10 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->rememberToken(); 
+            $table->boolean('disabled')->default(false);
+            $table->unsignedBigInteger('role_id')->nullable();
+            $table->foreign('role_id')->references('id')->on('roles')->onDelete('SET NULL');
+            $table->rememberToken();
             $table->timestamps();
         });
     }
