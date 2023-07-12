@@ -17,6 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('family_name');
+            $table->string('identification_number')->unique();
+            $table->unsignedBigInteger('identification_type_id');
+            $table->foreign('identification_type_id')->references('id')->on('identification_types')->onDelete('cascade');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
