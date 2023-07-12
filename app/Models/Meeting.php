@@ -17,7 +17,7 @@ class Meeting extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class, 'meeting_user')->withTimestamps();
+        return $this->belongsToMany(User::class, 'meeting_user');
     }
 
     public function moderator()

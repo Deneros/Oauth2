@@ -19,6 +19,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'role_id',
         'family_name',
         'email',
         'password',
@@ -43,6 +44,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function meetings()
+    {
+        return $this->belongsToMany(Meeting::class, 'meeting_user');
+    }
+
+    public function formData()
+    {
+        return $this->hasOne(FormData::class);
+    }
 
     public function role()
     {
