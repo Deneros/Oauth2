@@ -57,6 +57,37 @@
         button:hover {
             background-color: #45a049;
         }
+
+        .select-container {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .select-container select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-color: #fff;
+            background-image: url('arrow-down.png');
+            background-repeat: no-repeat;
+            background-position: right center;
+        }
+
+        .select-icon {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            pointer-events: none;
+            font-size: 14px;
+        }
     </style>
 </head>
 
@@ -91,6 +122,30 @@
 
             <label for="password_confirmation">Confirmar contraseña:</label>
             <input type="password" name="password_confirmation" id="password_confirmation" required>
+
+            @if ($role === 'moderador')
+
+            <label for="identification_type">Tipo de identificación:</label>
+            <div class="select-container">
+                <select name="identification_type" id="identification_type" required>
+                    <option value="" disabled selected>Selecciona una opción</option>
+                    @foreach($identificationTypes as $id => $name)
+                    <option value="{{ $id }}">{{ $name }}</option>
+                    @endforeach
+                </select>
+                <span class="select-icon">&#9662;</span>
+            </div>
+            @error('identification_type')
+            <div class="alert alert-danger">Este campo es requerido</div>
+            @enderror
+
+
+
+            <label for="identification_number">Número de identificación:</label>
+            <input type="text" name="identification_number" id="identification_number" required>
+
+            <input type="hidden" name="role" value="{{ $role }}">
+            @endif
 
             <button type="submit">Registrarse</button>
         </form>
