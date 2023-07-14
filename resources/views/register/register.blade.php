@@ -146,6 +146,22 @@
 
             <input type="hidden" name="role" value="{{ $role }}">
             @endif
+            <label>
+                <input type="checkbox" name="terms" required>
+                Acepto los términos y condiciones
+            </label>
+            @error('terms')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+
+            <label>
+                <input type="checkbox" name="data_protection" required>
+                Acepto el tratamiento de datos personales
+            </label>
+            @error('data_protection')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+
 
             <button type="submit">Registrarse</button>
         </form>
