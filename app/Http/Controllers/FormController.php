@@ -10,6 +10,7 @@ use App\Models\Gender;
 use App\Models\IdentificationType;
 use App\Models\HousingType;
 use App\Models\City;
+use App\Models\User;
 
 
 
@@ -21,8 +22,11 @@ class FormController extends Controller
         $identificationTypes = IdentificationType::pluck('name', 'id');
         $housingTypes = HousingType::pluck('name', 'id');
         $cities = City::orderBy('name')->pluck('name', 'id');
+        $moderators = User::whereHas('role', function ($query) {
+            $query->where('name', 'moderador');
+        })->pluck('name', 'id');
 
-        return view('form.index', compact('genders', 'identificationTypes', 'housingTypes', 'cities'));
+        return view('form.index', compact('genders', 'identificationTypes', 'housingTypes', 'cities', 'moderators'));
     }
 
     public function store(Request $request)
