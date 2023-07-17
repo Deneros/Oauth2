@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-use App\Models\User;
 use App\Models\IdentificationType;
+use App\Models\User;
 use App\Models\Role;
 
 
@@ -45,8 +45,8 @@ class RegisterController extends Controller
             'family_name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
-            'identification_type' => 'nullable|number',
-            'identification_number'=>'nullable|number',
+            'identification_type' => 'nullable|numeric',
+            'identification_number' => 'nullable|numeric',
             'role' => 'nullable|string'
         ]);
 
@@ -57,10 +57,14 @@ class RegisterController extends Controller
         $user->family_name = $request->input('family_name');
         $user->email = $request->input('email');
         $user->password = Hash::make($request->input('password'));
-        $user->identification_type = $request->input('identification_type');
+        $user->identification_type_id = $request->input('identification_type');
         $user->identification_number = $request->input('identification_number');
         $user->role_id = $role_id;
         $user->save();
+
+        if ($user->role_id != 3) {
+            return redirect()->back()->with('success', 'Usuario creado exitosamente.');
+        }
 
 
         return redirect()->route('login')->with('success', 'Registro exitoso. Por favor, inicia sesión.');
