@@ -17,7 +17,10 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description');
+            $table->text('location');
             $table->dateTime('date_meeting');
+            $table->text('document_path')->nullable();
+            $table->boolean('completed')->default(0);
             $table->timestamps();
         });
     }
