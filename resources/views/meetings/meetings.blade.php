@@ -2,8 +2,6 @@
 
 @section('content')
 <style>
-
-
     h1 {
         text-align: center;
         margin-bottom: 20px;
@@ -74,7 +72,56 @@
     }
 
     .meeting-item {
-        margin-bottom: 10px;
+        margin-bottom: 20px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        background-color: #f5f5f5;
+    }
+
+    .meeting-item strong {
+        font-weight: bold;
+    }
+
+    .meeting-item .status {
+        margin-top: 10px;
+    }
+
+    .meeting-item .document {
+        margin-top: 10px;
+    }
+
+    .meeting-item .actions {
+        margin-top: 10px;
+    }
+
+    .meeting-item .actions button {
+        padding: 6px 12px;
+        margin-right: 10px;
+        background-color: #4caf50;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .meeting-item .actions form {
+        display: inline;
+    }
+
+    .meeting-item .actions input[type="file"] {
+        margin-top: 10px;
+    }
+
+    .meeting-item .actions a {
+        margin-top: 10px;
+        display: inline-block;
+        padding: 6px 12px;
+        background-color: #337ab7;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        text-decoration: none;
     }
 </style>
 
@@ -100,9 +147,9 @@
             </div>
 
             <div class="form-group">
-                <label for="description">Descripción:</label>
-                <textarea name="description" id="description" rows="4"></textarea>
-                @error('description')
+                <label for="location">Ubicación:</label>
+                <input type="text" name="location" id="location">
+                @error('location')
                 <div class="alert">{{ $message }}</div>
                 @enderror
             </div>
@@ -115,6 +162,14 @@
                 @enderror
             </div>
 
+            <div class="form-group">
+                <label for="description">Descripción:</label>
+                <textarea name="description" id="description" rows="4"></textarea>
+                @error('description')
+                <div class="alert">{{ $message }}</div>
+                @enderror
+            </div>
+
             <div class="form-actions">
                 <button type="submit">Crear Reunión</button>
             </div>
@@ -122,15 +177,65 @@
     </div>
     <div class="column">
         <h2>Reuniones existentes:</h2>
+        @if ($meetings->isEmpty())
+        <p>No hay reuniones programadas.</p>
+        @else
         <ul class="meetings-list">
             @foreach($meetings as $meeting)
             <li class="meeting-item">
-                <strong>Título:</strong> {{ $meeting->title }}<br>
-                <strong>Descripción:</strong> {{ $meeting->description }}<br>
-                <strong>Fecha y Hora:</strong> {{ $meeting->date_meeting }}
+                <div>
+                    <strong>Título:</strong> {{ $meeting->title }}
+                </div>
+                <div>
+                    <strong>Descripción:</strong> {{ $meeting->description }}
+                </div>
+                <div>
+                    <strong>Fecha y Hora:</strong> {{ $meeting->date_meeting }}
+                </div>
+                <div>
+                    <strong>Ubicación:</strong> {{ $meeting->location }}
+                </div>
+                <div class="status">
+                    <strong>Estado:</strong>
+                    @if ($meeting->completed)
+                    Completada
+                    @else
+                    Pendiente
+                    @endif
+                </div>
+                <div class="document">
+                    <strong>Documento adjunto:</strong>
+                    @if ($meeting->document_path)
+                    <a href="{{ route('meetings.downloadDocument', $meeting->id) }}">Descargar documento</a>
+                    @else
+                    No adjunto
+                    @endif
+                </div>
+                <div class="actions">
+                    @if (!$meeting->completed)
+                    <form action="{{ route('meetings.markCompleted', $meeting->id) }}" method="POST">
+                        @csrf
+                        <button type="submit" onclick="return confirm('¿Estás seguro de marcar esta reunión como completada?')">Marcar como completada</button>
+                    </form>
+                    @endif
+                    @if (!$meeting->document_path && !$meeting->completed)
+                    <form action="{{ route('meetings.attachDocument', $meeting->id) }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div>
+                            <label for="document">Adjuntar documento:</label>
+                            <input type="file" name="document" id="document">
+                        </div>
+                        <button type="submit">Adjuntar</button>
+                    </form>
+                    @endif
+                    @if ($meeting->document)
+                    <a href="{{ asset('storage/documents/' . $meeting->document) }}" download>Descargar documento</a>
+                    @endif
+                </div>
             </li>
             @endforeach
         </ul>
+        @endif
     </div>
 </div>
 @endsection
