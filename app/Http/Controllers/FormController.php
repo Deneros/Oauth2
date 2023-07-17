@@ -51,6 +51,7 @@ class FormController extends Controller
             'children_count' => 'required_if:children,1|nullable|numeric',
             'children_live_with' => 'required_if:children,1|nullable|numeric',
             'adult_children' => 'required_if:children,1|nullable|numeric',
+            'moderator' => 'nullable|numeric',
             'topics' => 'required|array|min:3',
             // 'topics.*' => 'in:Desarrollo de la Agricultura,Desarrollo de la Minería,Economía,Emprendimiento,Seguridad,Crear oportunidades de Empleo,Educación,Salud,Recreación,Turismo', 
 
@@ -87,6 +88,7 @@ class FormController extends Controller
         $form_data->voted_2022_congress_presidency = $request->input('elections_2022');
         $form_data->voted_2019_mayor_governor = $request->input('elections_2019');
         $form_data->registered_in_dagua = $request->input('registered_in_dagua');
+        $form_data->moderator_id = $request->input('moderator');;
         $form_data->save();
 
         $topics = $request->input('topics');
