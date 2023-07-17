@@ -51,15 +51,7 @@
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-            /* padding: 20px; */
-            /* display: flex; */
-            /* justify-content: center;
-            align-items: flex-start; */
             height: 100vh;
-        }
-
-        .container {
-            width: 600px;
         }
 
         h1 {

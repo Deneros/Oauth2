@@ -11,7 +11,7 @@
             padding: 0;
         }
 
-        .container {
+        .register_container {
             max-width: 400px;
             margin: 100px auto;
             background-color: #fff;
@@ -92,80 +92,8 @@
 </head>
 
 <body>
-    <div class="container">
-        <h1>Registro</h1>
+@include('register.register_form', ['identificationTypes' => $identificationTypes, 'role' => $role])
 
-        @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-        @endif
-
-        <form method="POST" action="{{ route('register.save') }}">
-            @csrf
-
-            <label for="name">Nombres:</label>
-            <input type="text" name="name" id="name" required>
-
-            <label for="name">Apellidos:</label>
-            <input type="text" name="family_name" id="family_name" required>
-
-            <label for="email">Correo electrónico:</label>
-            <input type="email" name="email" id="email" required>
-
-            <label for="password">Contraseña:</label>
-            <input type="password" name="password" id="password" required>
-
-            <label for="password_confirmation">Confirmar contraseña:</label>
-            <input type="password" name="password_confirmation" id="password_confirmation" required>
-
-            @if ($role === 'moderador')
-
-            <label for="identification_type">Tipo de identificación:</label>
-            <div class="select-container">
-                <select name="identification_type" id="identification_type" required>
-                    <option value="" disabled selected>Selecciona una opción</option>
-                    @foreach($identificationTypes as $id => $name)
-                    <option value="{{ $id }}">{{ $name }}</option>
-                    @endforeach
-                </select>
-                <span class="select-icon">&#9662;</span>
-            </div>
-            @error('identification_type')
-            <div class="alert alert-danger">Este campo es requerido</div>
-            @enderror
-
-
-
-            <label for="identification_number">Número de identificación:</label>
-            <input type="text" name="identification_number" id="identification_number" required>
-
-            <input type="hidden" name="role" value="{{ $role }}">
-            @endif
-            <label>
-                <input type="checkbox" name="terms" required>
-                Acepto los términos y condiciones
-            </label>
-            @error('terms')
-            <div class="alert alert-danger">{{ $message }}</div>
-            @enderror
-
-            <label>
-                <input type="checkbox" name="data_protection" required>
-                Acepto el tratamiento de datos personales
-            </label>
-            @error('data_protection')
-            <div class="alert alert-danger">{{ $message }}</div>
-            @enderror
-
-
-            <button type="submit">Registrarse</button>
-        </form>
-    </div>
 </body>
 
 </html>
