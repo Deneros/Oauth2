@@ -39,6 +39,7 @@ class LoginController extends Controller
                 'family_name' => $user->user['family_name'],
                 'email' => $user->getEmail(),
                 'password' => Hash::make($user->id),
+                'role_id' => 3,
             ]);
 
             auth()->login($new_user, true);
@@ -56,5 +57,12 @@ class LoginController extends Controller
         } else {
             return redirect()->back()->withErrors(['message' => 'Invalid credentials']);
         }
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+
+        return redirect('/');
     }
 }
