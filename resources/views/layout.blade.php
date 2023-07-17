@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Título de tu aplicación</title>
+    <title>luisfernandobolanosargaez</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <style>
         .layout-container {
@@ -83,6 +83,16 @@
         a:hover {
             text-decoration: underline;
         }
+
+        .logout-button {
+            background-color: #ff0000;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .logout-button:hover {
+            background-color: #cc0000;
+        }
     </style>
 
 </head>
@@ -91,11 +101,17 @@
     <div class="layout-container">
         <div class="sidebar">
             <ul>
+                <li><a href="{{ route('home.index') }}">Inicio</a></li>
                 <li><a href="{{ route('form.index') }}">Formulario</a></li>
                 <li><a href="{{ route('meetings.index') }}">Reuniones</a></li>
                 <li><a href="{{ route('backstage.user') }}">Administrar</a></li>
-                <li><a href="#">Reportes</a></li>
-                <li><a href="#">Salir</a></li>
+                <li><a href="{{ route('reports.index') }}">Reportes</a></li>
+                <li>
+                    <form class="logout-form" action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit">Salir</button>
+                    </form>
+                </li>
             </ul>
         </div>
         <div class="content">
