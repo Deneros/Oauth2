@@ -45,7 +45,7 @@ class LoginController extends Controller
             auth()->login($new_user, true);
         }
 
-        return redirect('/form');
+        return redirect('/home');
     }
 
     public function auth(Request $request)
