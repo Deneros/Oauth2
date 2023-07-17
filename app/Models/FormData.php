@@ -62,4 +62,19 @@ class FormData extends Model
     {
         return $this->belongsTo(City::class, 'place_of_residence_id');
     }
+
+    public function identificationType()
+    {
+        return $this->belongsTo(IdentificationType::class, 'identification_type_id');
+    }
+
+    public function gender()
+    {
+        return $this->belongsTo(Gender::class, 'gender_id');
+    }
+
+    public function housingType()
+    {
+        return $this->belongsTo(HousingType::class, 'housing_type_id');
+    }
 }
