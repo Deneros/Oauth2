@@ -1,74 +1,69 @@
 @extends('layout')
 
 @section('content')
-<style>
-    .filters {
-        margin-bottom: 20px;
-    }
-
-    .filters select {
-        margin-right: 10px;
-    }
-
-    .results-table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-
-    .results-table th,
-    .results-table td {
-        padding: 10px;
-        border: 1px solid #ccc;
-    }
-</style>
 
 <h1>Generar Reportes</h1>
 
-<div class="filters">
-    <form action="{{ route('reports.index') }}" method="GET">
-        <select name="gender">
-            <option value="">Seleccione un género</option>
-            @foreach ($genders as $gender)
-            <option value="{{ $gender->id }}">{{ $gender->name }}</option>
-            @endforeach
-        </select>
+<div class="report">
+    <form action="{{ route('reports.index') }}" method="GET" class="report__filters">
+        <div>
+            <label for="gender">Género:</label>
+            <select name="gender" id="gender" class="report__select">
+                <option value="">Seleccione un género</option>
+                @foreach ($genders as $gender)
+                <option value="{{ $gender->id }}">{{ $gender->name }}</option>
+                @endforeach
+            </select>
+        </div>
 
-        <select name="housing_type">
-            <option value="">Seleccione un tipo de vivienda</option>
-            @foreach ($housingTypes as $housingType)
-            <option value="{{ $housingType->id }}">{{ $housingType->name }}</option>
-            @endforeach
-        </select>
+        <div>
+            <label for="housing_type">Tipo de vivienda:</label>
+            <select name="housing_type" id="housing_type" class="report__select">
+                <option value="">Seleccione un tipo de vivienda</option>
+                @foreach ($housingTypes as $housingType)
+                <option value="{{ $housingType->id }}">{{ $housingType->name }}</option>
+                @endforeach
+            </select>
+        </div>
 
-        <select name="identification_type">
-            <option value="">Seleccione un tipo de identificación</option>
-            @foreach ($identificationTypes as $identificationType)
-            <option value="{{ $identificationType->id }}">{{ $identificationType->name }}</option>
-            @endforeach
-        </select>
+        <div>
+            <label for="identification_type">Tipo de identificación:</label>
+            <select name="identification_type" id="identification_type" class="report__select">
+                <option value="">Seleccione un tipo de identificación</option>
+                @foreach ($identificationTypes as $identificationType)
+                <option value="{{ $identificationType->id }}">{{ $identificationType->name }}</option>
+                @endforeach
+            </select>
+        </div>
 
-        <select name="city_of_birth">
-            <option value="">Seleccione una ciudad de nacimiento</option>
-            @foreach ($citiesOfBirth as $city)
-            <option value="{{ $city->id }}">{{ $city->name }}</option>
-            @endforeach
-        </select>
+        <div>
+            <label for="city_of_birth">Ciudad de nacimiento:</label>
+            <select name="city_of_birth" id="city_of_birth" class="report__select">
+                <option value="">Seleccione una ciudad de nacimiento</option>
+                @foreach ($citiesOfBirth as $city)
+                <option value="{{ $city->id }}">{{ $city->name }}</option>
+                @endforeach
+            </select>
+        </div>
 
-        <select name="city_of_residence">
-            <option value="">Seleccione una ciudad de residencia</option>
-            @foreach ($citiesOfResidence as $city)
-            <option value="{{ $city->id }}">{{ $city->name }}</option>
-            @endforeach
-        </select>
+        <div>
+            <label for="city_of_residence">Ciudad de residencia:</label>
+            <select name="city_of_residence" id="city_of_residence" class="report__select">
+                <option value="">Seleccione una ciudad de residencia</option>
+                @foreach ($citiesOfResidence as $city)
+                <option value="{{ $city->id }}">{{ $city->name }}</option>
+                @endforeach
+            </select>
+        </div>
 
-        <button type="submit">Filtrar</button>
+        <button type="submit" class="button button--small">Filtrar</button>
     </form>
 </div>
 
 @if ($results->isEmpty())
 <p>No se encontraron resultados.</p>
 @else
-<table class="results-table">
+<table class="report__table">
     <thead>
         <tr>
             <th>Nombre</th>

@@ -4,112 +4,29 @@
 <head>
     <title>luisfernandobolanosargaez</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <style>
-        .layout-container {
-            display: flex;
-            height: 100vh;
-            margin: 0;
-        }
-
-        .sidebar {
-            width: 250px;
-            background-color: #f1f1f1;
-            padding: 20px;
-            height: 100%;
-        }
-
-        .sidebar ul {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .sidebar li {
-            margin-bottom: 10px;
-        }
-
-        .sidebar a {
-            display: block;
-            padding: 10px;
-            text-decoration: none;
-            color: #333;
-            background-color: #ddd;
-            border-radius: 5px;
-        }
-
-        .sidebar a:hover {
-            background-color: #ccc;
-        }
-
-        .content {
-            flex-grow: 1;
-            padding: 20px;
-            height: 100%;
-        }
-
-        /* Estilos adicionales */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            height: 100vh;
-        }
-
-        h1 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        th,
-        td {
-            padding: 10px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-
-        th {
-            background-color: #f2f2f2;
-        }
-
-        a {
-            color: #337ab7;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        .logout-button {
-            background-color: #ff0000;
-            color: #fff;
-            font-weight: bold;
-        }
-
-        .logout-button:hover {
-            background-color: #cc0000;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/layout.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/form.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}"> 
+    <link rel="stylesheet" href="{{ asset('css/meetings.css') }}"> 
+    <link rel="stylesheet" href="{{ asset('css/reports.css') }}"> 
+    <link rel="stylesheet" href="{{ asset('css/home.css') }}"> 
 
 </head>
 
 <body>
     <div class="layout-container">
         <div class="sidebar">
-            <ul>
-                <li><a href="{{ route('home.index') }}">Inicio</a></li>
-                <li><a href="{{ route('form.index') }}">Formulario</a></li>
-                <li><a href="{{ route('meetings.index') }}">Reuniones</a></li>
-                <li><a href="{{ route('backstage.user') }}">Administrar</a></li>
-                <li><a href="{{ route('reports.index') }}">Reportes</a></li>
-                <li>
+            <ul class="sidebar__list">
+                <li class="sidebar__item"><a class="sidebar__link" href="{{ route('home.index') }}">Inicio</a></li>
+                <li class="sidebar__item"><a class="sidebar__link" href="{{ route('form.index') }}">Formulario</a></li>
+                <li class="sidebar__item"><a class="sidebar__link" href="{{ route('meetings.index') }}">Reuniones</a></li>
+                <li class="sidebar__item"><a class="sidebar__link" href="{{ route('backstage.user') }}">Administrar</a></li>
+                <li class="sidebar__item"><a class="sidebar__link" href="{{ route('reports.index') }}">Reportes</a></li>
+                <li class="sidebar__item">
                     <form class="logout-form" action="{{ route('logout') }}" method="POST">
                         @csrf
-                        <button type="submit">Salir</button>
+                        <button class="button" type="submit">Salir</button>
                     </form>
                 </li>
             </ul>

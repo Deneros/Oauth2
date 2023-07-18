@@ -4,11 +4,9 @@
 <head>
     <title>Iniciar sesión</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;1,500&display=swap');
 
         body {
             font-family: 'Montserrat', sans-serif;
-            background-color: #f5f5f5;
             margin: 0;
             padding: 0;
         }

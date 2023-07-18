@@ -39,19 +39,18 @@
         box-sizing: border-box;
     }
 
-    button {
-        background-color: #4caf50;
+    button[type="submit"],
+    button[type="button"] {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background-color: #cc0000;
         color: #fff;
         border: none;
-        padding: 10px 20px;
-        border-radius: 5px;
         cursor: pointer;
-        font-size: 16px;
     }
 
-    button:hover {
-        background-color: #45a049;
-    }
+
 
     .select-container {
         position: relative;

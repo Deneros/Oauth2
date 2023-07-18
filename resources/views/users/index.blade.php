@@ -1,53 +1,5 @@
 @extends('layout')
 
-@section('content')
-<style>
-    .container {
-        width: 100% !important;
-        display: flex;
-        justify-content: center;
-    }
-
-    h1 {
-        text-align: center;
-        margin-bottom: 20px;
-    }
-
-    table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-
-    th,
-    td {
-        padding: 10px;
-        text-align: left;
-        border-bottom: 1px solid #ddd;
-    }
-
-    th {
-        background-color: #f2f2f2;
-    }
-
-    a {
-        color: #337ab7;
-        text-decoration: none;
-    }
-
-    a:hover {
-        text-decoration: underline;
-    }
-
-    .register-form-container {
-        display: none;
-    }
-
-    .table-container {
-        width: 100% !important;
-        margin-bottom: 20px;
-        text-align: center;
-    }
-</style>
 
 @section('content')
 <div class="container">
@@ -78,7 +30,7 @@
     </div>
 </div>
 @if ($user_role !== 'usuario')
-<button id="show-register-form" type="button">Agregar Lider</button>
+<button class="button button--small" id="show-register-form" type="button">Agregar Lider</button>
 
 <div class="register-form-container">
     @include('register.register_form', ['identificationTypes' => $identificationTypes, 'role' => $user_role])

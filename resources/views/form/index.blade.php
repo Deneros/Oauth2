@@ -1,80 +1,10 @@
 @extends('layout')
 
 @section('content')
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        /* padding: 20px; */
-        box-sizing: border-box;
-    }
 
-    h1 {
-        text-align: center;
-        margin-bottom: 20px;
-    }
-
-    .form-group {
-        /* margin-bottom: 20px; */
-    }
-
-    .form-group label {
-        display: block;
-        font-weight: bold;
-    }
-
-    .form-group input[type="text"],
-    .form-group input[type="number"],
-    .form-group input[type="date"],
-    .form-group select {
-        width: 100%;
-        padding: 12px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-sizing: border-box;
-    }
-
-
-    .form-columns {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-gap: 40px;
-    }
-
-
-
-    .form-container {
-        max-width: 1000px;
-        margin: 0 auto;
-    }
-
-    .form-actions {
-        margin-top: 20px;
-    }
-
-    button[type="submit"] {
-        display: block;
-        width: 100%;
-        padding: 10px;
-        background-color: #4caf50;
-        color: #fff;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-    }
-
-    .alert {
-        padding: 10px;
-        margin-bottom: 20px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        color: #333;
-        background-color: #f5f5f5;
-    }
-</style>
 <div class="form-container">
 
-    <h1>Info</h1>
+    <h1 class="form-container__title">Info</h1>
 
     @if (session('success'))
     <div class="alert">
@@ -82,13 +12,13 @@
     </div>
     @endif
 
-    <form method="POST" action="{{ route('form.store') }}">
+    <form class="form-container__form" method="POST" action="{{ route('form.store') }}">
         @csrf
 
         <div class="form-columns">
             <div class="form-group">
-                <label for="identification_type">Tipo de identificación:</label>
-                <select name="identification_type" id="identification_type">
+                <label for="identification_type" class="form-group__label">Tipo de identificación:</label>
+                <select name="identification_type" id="identification_type" class="form-group__input">
                     <option value="" disabled selected>Selecciona una opción</option>
                     @foreach($identificationTypes as $id => $name)
                     <option value="{{ $id }}">{{ $name }}</option>
@@ -100,16 +30,16 @@
             </div>
 
             <div class="form-group">
-                <label for="identification_number">Número de identificación:</label>
-                <input type="text" name="identification_number" id="identification_number">
+                <label for="identification_number" class="form-group__label">Número de identificación:</label>
+                <input type="text" name="identification_number" id="identification_number" class="form-group__input">
                 @error('identification_number')
                 <div class="alert alert-danger">Este campo es requerido</div>
                 @enderror
             </div>
 
             <div class="form-group">
-                <label for="gender">Género:</label>
-                <select name="gender" id="gender">
+                <label for="gender" class="form-group__label">Género:</label>
+                <select name="gender" id="gender" class="form-group__input">
                     <option value="" disabled selected>Selecciona una opción</option>
                     @foreach($genders as $id => $option)
                     <option value="{{ $id }}">{{ $option }}</option>
@@ -121,8 +51,8 @@
             </div>
 
             <div class="form-group">
-                <label for="moderator">Lideres:</label>
-                <select name="moderator" id="moderator">
+                <label for="moderator" class="form-group__label">Lideres:</label>
+                <select name="moderator" id="moderator" class="form-group__input">
                     <option value="" disabled selected>Selecciona una opción</option>
                     @foreach($moderators as $id => $option)
                     <option value="{{ $id }}">{{ $option }}</option>
@@ -134,16 +64,16 @@
             </div>
 
             <div class="form-group">
-                <label for="date_of_birth">Fecha de nacimiento:</label>
-                <input type="date" name="date_of_birth" id="date_of_birth">
+                <label for="date_of_birth" class="form-group__label">Fecha de nacimiento:</label>
+                <input type="date" name="date_of_birth" id="date_of_birth" class="form-group__input">
                 @error('date_of_birth')
                 <div class="alert alert-danger">Este campo es requerido</div>
                 @enderror
             </div>
 
             <div class="form-group">
-                <label for="birth_city">Ciudad de nacimiento:</label>
-                <select name="birth_city" id="birth_city">
+                <label for="birth_city" class="form-group__label">Ciudad de nacimiento:</label>
+                <select name="birth_city" id="birth_city" class="form-group__input">
                     <option value="" disabled selected>Selecciona una opción</option>
                     @foreach($cities as $id => $option)
                     <option value="{{ $id }}">{{ $option }}</option>
@@ -155,8 +85,8 @@
             </div>
 
             <div class="form-group">
-                <label for="nationality">Nacionalidad:</label>
-                <select name="nationality" id="nationality">
+                <label for="nationality" class="form-group__label">Nacionalidad:</label>
+                <select name="nationality" id="nationality" class="form-group__input">
                     <option value="" disabled selected>Selecciona una opción</option>
                     <option value="Colombiano">Colombiano/a</option>
                 </select>
@@ -166,24 +96,24 @@
             </div>
 
             <div class="form-group">
-                <label for="residence_address">Dirección de residencia:</label>
-                <input type="text" name="residence_address" id="residence_address">
+                <label for="residence_address" class="form-group__label">Dirección de residencia:</label>
+                <input type="text" name="residence_address" id="residence_address" class="form-group__input">
                 @error('residence_address')
                 <div class="alert alert-danger">Este campo es requerido</div>
                 @enderror
             </div>
 
             <div class="form-group">
-                <label for="neighborhood">Barrio:</label>
-                <input type="text" name="neighborhood" id="neighborhood">
+                <label for="neighborhood" class="form-group__label">Barrio:</label>
+                <input type="text" name="neighborhood" id="neighborhood" class="form-group__input">
                 @error('neighborhood')
                 <div class="alert alert-danger">Este campo es requerido</div>
                 @enderror
             </div>
 
             <div class="form-group">
-                <label for="residence_location">Lugar de residencia:</label>
-                <select name="residence_location" id="residence_location">
+                <label for="residence_location" class="form-group__label">Lugar de residencia:</label>
+                <select name="residence_location" id="residence_location" class="form-group__input">
                     <option value="" disabled selected>Selecciona una opción</option>
                     @foreach($cities as $id => $option)
                     <option value="{{ $id }}">{{ $option }}</option>
@@ -195,16 +125,16 @@
             </div>
 
             <div class="form-group">
-                <label for="cell_phone">Celular:</label>
-                <input type="text" name="phone_number" id="phone_number">
+                <label for="phone_number" class="form-group__label">Celular:</label>
+                <input type="text" name="phone_number" id="phone_number" class="form-group__input">
                 @error('phone_number')
                 <div class="alert alert-danger">Este campo es requerido</div>
                 @enderror
             </div>
 
             <div class="form-group">
-                <label for="housing_type">Tipo de vivienda:</label>
-                <select name="housing_type" id="housing_type">
+                <label for="housing_type" class="form-group__label">Tipo de vivienda:</label>
+                <select name="housing_type" id="housing_type" class="form-group__input">
                     <option value="" disabled selected>Selecciona una opción</option>
                     @foreach($housingTypes as $id => $option)
                     <option value="{{ $id }}">{{ $option }}</option>
@@ -216,16 +146,16 @@
             </div>
 
             <div class="form-group">
-                <label for="dependents_count">Cantidad de personas a cargo:</label>
-                <input type="number" name="dependents_count" id="dependents_count">
+                <label for="dependents_count" class="form-group__label">Cantidad de personas a cargo:</label>
+                <input type="number" name="dependents_count" id="dependents_count" class="form-group__input">
                 @error('dependents_count')
                 <div class="alert alert-danger">Este campo es requerido</div>
                 @enderror
             </div>
 
             <div class="form-group">
-                <label for="children">Tiene hijos?:</label>
-                <select name="children" id="children" onchange="toggleDependentFields()">
+                <label for="children" class="form-group__label">Tiene hijos?:</label>
+                <select name="children" id="children" class="form-group__input" onchange="toggleDependentFields()">
                     <option value="" disabled selected>Selecciona una opción</option>
                     <option value="1">Sí</option>
                     <option value="0">No</option>
@@ -235,10 +165,10 @@
                 @enderror
             </div>
 
-            <div id="dependentFieldsContainer" style="display: none;">
+            <div id="dependentFieldsContainer1" class="form-group__dependent-fields" style="display: none;">
                 <div class="form-group">
-                    <label for="children_count">Cuántos hijos tiene:</label>
-                    <select name="children_count" id="children_count">
+                    <label for="children_count" class="form-group__label">Cuántos hijos tiene:</label>
+                    <select name="children_count" id="children_count" class="form-group__input">
                         <option value="" disabled selected>Selecciona una opción</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -257,10 +187,10 @@
                 </div>
             </div>
 
-            <div id="dependentFieldsContainer" style="display: none;">
+            <div id="dependentFieldsContainer2" class="form-group__dependent-fields" style="display: none;">
                 <div class="form-group">
-                    <label for="children_live_with">Cuántos viven con usted:</label>
-                    <select name="children_live_with" id="children_live_with">
+                    <label for="children_live_with" class="form-group__label">Cuántos viven con usted:</label>
+                    <select name="children_live_with" id="children_live_with" class="form-group__input">
                         <option value="" disabled selected>Selecciona una opción</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -279,10 +209,10 @@
                 </div>
             </div>
 
-            <div id="dependentFieldsContainer" style="display: none;">
+            <div id="dependentFieldsContainer3" class="form-group__dependent-fields" style="display: none;">
                 <div class="form-group">
-                    <label for="adult_children">Cuántos son mayores de edad:</label>
-                    <select name="adult_children" id="adult_children">
+                    <label for="adult_children" class="form-group__label">Cuántos son mayores de edad:</label>
+                    <select name="adult_children" id="adult_children" class="form-group__input">
                         <option value="" disabled selected>Selecciona una opción</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -302,8 +232,8 @@
             </div>
 
             <div class="form-group">
-                <label for="elections_2022">Votó en las anteriores elecciones del 2022 para congreso y presidencia?</label>
-                <select name="elections_2022" id="elections_2022">
+                <label for="elections_2022" class="form-group__label">Votó en las anteriores elecciones del 2022 para congreso y presidencia?</label>
+                <select name="elections_2022" id="elections_2022" class="form-group__input">
                     <option value="" disabled selected>Selecciona una opción</option>
                     <option value="1">Sí</option>
                     <option value="0">No</option>
@@ -314,8 +244,8 @@
             </div>
 
             <div class="form-group">
-                <label for="elections_2019">Votó en las anteriores elecciones del 2019 para alcaldía y gobernación?</label>
-                <select name="elections_2019" id="elections_2019">
+                <label for="elections_2019" class="form-group__label">Votó en las anteriores elecciones del 2019 para alcaldía y gobernación?</label>
+                <select name="elections_2019" id="elections_2019" class="form-group__input">
                     <option value="" disabled selected>Selecciona una opción</option>
                     <option value="1">Sí</option>
                     <option value="0">No</option>
@@ -326,8 +256,8 @@
             </div>
 
             <div class="form-group">
-                <label for="registered_in_dagua">Tiene inscrita la cédula en Dagua?</label>
-                <select name="registered_in_dagua" id="registered_in_dagua">
+                <label for="registered_in_dagua" class="form-group__label">Tiene inscrita la cédula en Dagua?</label>
+                <select name="registered_in_dagua" id="registered_in_dagua" class="form-group__input">
                     <option value="" disabled selected>Selecciona una opción</option>
                     <option value="1">Sí</option>
                     <option value="0">No</option>
@@ -338,7 +268,7 @@
             </div>
 
             <div class="form-group">
-                <label>Seleccione 3 temas que le gustaría que el próximo alcalde priorice:</label><br>
+                <label class="form-group__label">Seleccione 3 temas que le gustaría que el próximo alcalde priorice:</label><br>
                 <input type="checkbox" name="topics[]" value="1">Desarrollo de la Agricultura<br>
                 <input type="checkbox" name="topics[]" value="2">Desarrollo de la Minería<br>
                 <input type="checkbox" name="topics[]" value="3">Economía<br>
@@ -356,7 +286,7 @@
         </div>
 
         <div class="form-actions">
-            <button type="submit">Enviar</button>
+            <button class="button" type="submit" class="form-actions__submit">Enviar</button>
         </div>
     </form>
 </div>
@@ -364,14 +294,21 @@
 <script>
     function toggleDependentFields() {
         var childrenSelect = document.getElementById('children');
-        var dependentFieldsContainer = document.getElementById('dependentFieldsContainer');
+        var dependentFieldsContainer1 = document.getElementById('dependentFieldsContainer1');
+        var dependentFieldsContainer2 = document.getElementById('dependentFieldsContainer2');
+        var dependentFieldsContainer3 = document.getElementById('dependentFieldsContainer3');
 
         // Show/hide the container based on the selected value of the "Hijos" select
         if (childrenSelect.value === '1') {
-            dependentFieldsContainer.style.display = 'block';
+            dependentFieldsContainer1.style.display = 'block';
+            dependentFieldsContainer2.style.display = 'block';
+            dependentFieldsContainer3.style.display = 'block';
         } else {
-            dependentFieldsContainer.style.display = 'none';
+            dependentFieldsContainer1.style.display = 'none';
+            dependentFieldsContainer2.style.display = 'none';
+            dependentFieldsContainer3.style.display = 'none';
         }
     }
 </script>
 @endsection
+
