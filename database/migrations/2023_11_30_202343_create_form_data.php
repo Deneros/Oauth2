@@ -28,6 +28,10 @@ return new class extends Migration
             $table->unsignedBigInteger('city_of_birth_id')->nullable();
             $table->foreign('city_of_birth_id')->references('id')->on('cities')->onDelete('cascade');
             $table->string('nationality');
+
+            $table->string('polling_station');
+            $table->string('polling_address');
+            $table->string('polling_place');
             $table->string('residence_address');
             $table->string('neighborhood');
             $table->unsignedBigInteger('place_of_residence_id')->nullable();

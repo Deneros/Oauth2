@@ -41,6 +41,9 @@ class FormController extends Controller
             'identification_type' => 'required|numeric',
             'housing_type' => 'required|numeric',
             'neighborhood' => 'required|string',
+            'polling_place' => 'required|string',
+            'polling_address' => 'required|string',
+            'polling_station' => 'required|string',
             'residence_location' => 'required|numeric',
             'phone_number' => 'required|string',
             'dependents_count' => 'required|numeric',
@@ -78,6 +81,11 @@ class FormController extends Controller
         $form_data->neighborhood = $validated_data['neighborhood'];
         $form_data->place_of_residence_id = $request->input('residence_location');
         $form_data->cellphone = $validated_data['phone_number'];
+
+        $form_data->polling_place = $validated_data['polling_place'];
+        $form_data->polling_address = $validated_data['polling_address'];
+        $form_data->polling_station = $validated_data['polling_station'];
+
         $form_data->dependents = $validated_data['dependents_count'];
         $form_data->has_children = $validated_data['children'];
         if ($validated_data['children']) {

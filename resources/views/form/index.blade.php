@@ -230,6 +230,29 @@
                     @enderror
                 </div>
             </div>
+            <div class="form-group">
+                <label for="polling_place" class="form-group__label">Lugar de votación:</label>
+                <input type="text" name="polling_place" id="polling_place" class="form-group__input">
+                @error('polling_place')
+                <div class="alert alert-danger">Este campo es requerido</div>
+                @enderror
+            </div>
+
+            <div class="form-group">
+                <label for="polling_address" class="form-group__label">Dirección de votación:</label>
+                <input type="text" name="polling_address" id="polling_address" class="form-group__input">
+                @error('polling_address')
+                <div class="alert alert-danger">Este campo es requerido</div>
+                @enderror
+            </div>
+
+            <div class="form-group">
+                <label for="polling_station" class="form-group__label">mesa de votación:</label>
+                <input type="text" name="polling_station" id="polling_station" class="form-group__input">
+                @error('polling_station')
+                <div class="alert alert-danger">Este campo es requerido</div>
+                @enderror
+            </div>
 
             <div class="form-group">
                 <label for="elections_2022" class="form-group__label">Votó en las anteriores elecciones del 2022 para congreso y presidencia?</label>
