@@ -40,3 +40,27 @@ th {
     border-color: #4caf50;
     box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
 }
+
+.register-form-container {
+    display: flex;
+    max-width: 400px;
+    margin: 100px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.register-form-container-candidate {
+    display: flex;
+    max-width: 400px;
+    margin: 100px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.container--invisible {
+    display: none;
+}
