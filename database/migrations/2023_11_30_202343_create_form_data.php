@@ -45,8 +45,8 @@ return new class extends Migration
             $table->boolean('voted_2022_congress_presidency')->nullable();
             $table->boolean('voted_2019_mayor_governor')->nullable();
             $table->boolean('registered_in_dagua')->nullable();
-            $table->unsignedBigInteger('moderator_id')->nullable();
-            $table->foreign('moderator_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('leader_id')->nullable();
+            $table->foreign('leader_id')->references('id')->on('leaders')->onDelete('cascade');
             $table->timestamps();
         });
     }
