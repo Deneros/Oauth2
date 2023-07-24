@@ -60,6 +60,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::post('/register/save-candidate', [CandidateController::class, 'store'])->name('register_candidate');
     Route::post('/register/save-leader', [LeaderController::class, 'store'])->name('register_leader');
 
+    Route::delete('/leader/{leader}/candidate/{candidate}', [LeaderController::class, 'removeCandidate'])->name('leader.remove_candidate');
     Route::get('/leaders/references', [LeaderController::class, 'showLeadersCandidates'])->name('backstage.references');
     Route::post('/leaders/references/save', [LeaderController::class, 'saveLeadersCandidates'])->name('backstage.references.save');
 });
