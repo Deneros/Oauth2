@@ -61,4 +61,10 @@ class LeaderController extends Controller
 
         return redirect()->back()->with('success', 'Candidate assigned successfully.');
     }
+
+    public function removeCandidate(Leader $leader, Candidate $candidate)
+    {
+        $leader->candidates()->detach($candidate->id);
+        return redirect()->route('backstage.references')->with('success', 'Candidato eliminado del líder exitosamente.');
+    }
 }
