@@ -10,7 +10,7 @@ use App\Models\Gender;
 use App\Models\IdentificationType;
 use App\Models\HousingType;
 use App\Models\City;
-use App\Models\User;
+use App\Models\Leader;
 
 
 
@@ -22,15 +22,20 @@ class FormController extends Controller
         $identificationTypes = IdentificationType::pluck('name', 'id');
         $housingTypes = HousingType::pluck('name', 'id');
         $cities = City::orderBy('name')->pluck('name', 'id');
-        $moderators = User::whereHas('role', function ($query) {
-            $query->where('name', 'moderador');
+        $leaders = Leader::all()->map(function ($leader) {
+            return [
+                'id' => $leader->id,
+                'name' => $leader->first_name . ' ' . $leader->last_name,
+            ];
         })->pluck('name', 'id');
 
-        return view('form.index', compact('genders', 'identificationTypes', 'housingTypes', 'cities', 'moderators'));
+        return view('form.index', compact('genders', 'identificationTypes', 'housingTypes', 'cities', 'leaders'));
     }
 
     public function store(Request $request)
     {
+        // dd($request);
+
         $validated_data = $request->validate([
             'identification_number' => 'required|string',
             'date_of_birth' => 'required|date',
@@ -54,7 +59,7 @@ class FormController extends Controller
             'children_count' => 'required_if:children,1|nullable|numeric',
             'children_live_with' => 'required_if:children,1|nullable|numeric',
             'adult_children' => 'required_if:children,1|nullable|numeric',
-            'moderator' => 'nullable|numeric',
+            'leader' => 'nullable|exists:leaders,id',
             'topics' => 'required|array|min:3',
             // 'topics.*' => 'in:Desarrollo de la Agricultura,Desarrollo de la Minería,Economía,Emprendimiento,Seguridad,Crear oportunidades de Empleo,Educación,Salud,Recreación,Turismo', 
 
@@ -96,7 +101,7 @@ class FormController extends Controller
         $form_data->voted_2022_congress_presidency = $request->input('elections_2022');
         $form_data->voted_2019_mayor_governor = $request->input('elections_2019');
         $form_data->registered_in_dagua = $request->input('registered_in_dagua');
-        $form_data->moderator_id = $request->input('moderator');;
+        $form_data->leader_id = $request->input('leader');;
         $form_data->save();
 
         $topics = $request->input('topics');
