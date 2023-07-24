@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Role;
 use App\Models\IdentificationType;
+use App\Models\TypeCandidate;
+use App\Models\City;
+
 
 
 class UserController extends Controller
@@ -18,8 +21,13 @@ class UserController extends Controller
         $roles = Role::pluck('name', 'id');
         $user_role = auth()->user()->role->name;
         $identificationTypes = IdentificationType::pluck('name', 'id');
+        $candidate_type = TypeCandidate::pluck('name', 'id');
+        $cities = City::orderBy('name')->pluck('name', 'id');
 
-        return view('users.index', compact('users', 'roles', 'user_role', 'identificationTypes'));
+        // dd($identificationTypes);
+
+
+        return view('users.index', compact('users', 'roles', 'user_role', 'identificationTypes', 'candidate_type', 'cities'));
     }
 
     public function editRole(int $user)
