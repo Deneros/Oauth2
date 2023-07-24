@@ -15,7 +15,7 @@ class TypeCandidatesTableSeeder extends Seeder
      */
     public function run()
     {
-        $types = ['alcaldia', 'consejo', 'asamblea', 'gobernacion'];
+        $types = ['Alcaldia', 'Concejo ', 'Asamblea', 'Gobernacion'];
 
         foreach ($types as $type) {
             TypeCandidate::create([
