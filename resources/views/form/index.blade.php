@@ -51,14 +51,14 @@
             </div>
 
             <div class="form-group">
-                <label for="moderator" class="form-group__label">Lideres:</label>
-                <select name="moderator" id="moderator" class="form-group__input">
+                <label for="leader" class="form-group__label">Lideres:</label>
+                <select name="leader" id="leader" class="form-group__input">
                     <option value="" disabled selected>Selecciona una opción</option>
-                    @foreach($moderators as $id => $option)
+                    @foreach($leaders as $id => $option)
                     <option value="{{ $id }}">{{ $option }}</option>
                     @endforeach
                 </select>
-                @error('moderator')
+                @error('leader')
                 <div class="alert alert-danger">Este campo es requerido</div>
                 @enderror
             </div>
