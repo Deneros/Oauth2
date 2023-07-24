@@ -21,5 +21,6 @@ class DatabaseSeeder extends Seeder
         $this->call(TopicSeeder::class);
         $this->call(CitiesSeeder::class);
         $this->call(RolesTableSeeder::class);
+        $this->call(TypeCandidatesTableSeeder::class);
     }
 }
