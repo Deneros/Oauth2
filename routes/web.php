@@ -8,6 +8,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MeetingController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\LeaderController;
+use App\Http\Controllers\CandidateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,11 +45,21 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/form', [FormController::class, 'index'])->name('form.index');
     Route::post('/form', [FormController::class, 'store'])->name('form.store');
 
-    Route::get('/backstage', [UserController::class, 'index'])->name('backstage.user');
-    Route::get('/users-edit/{user}', [UserController::class, 'editRole'])->name('users.edit_role');
-    Route::put('/users-update/{user}', [UserController::class, 'update'])->name('users.update_role');
 
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
     Route::get('/home', [HomeController::class, 'index'])->name('home.index');
+});
+
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/backstage', [UserController::class, 'index'])->name('backstage.user');
+    Route::get('/users-edit/{user}', [UserController::class, 'editRole'])->name('users.edit_role');
+    Route::put('/users-update/{user}', [UserController::class, 'update'])->name('users.update_role');
+
+    Route::post('/register/save-candidate', [CandidateController::class, 'store'])->name('register_candidate');
+    Route::post('/register/save-leader', [LeaderController::class, 'store'])->name('register_leader');
+
+    Route::get('/leaders/references', [LeaderController::class, 'showLeadersCandidates'])->name('backstage.references');
+    Route::post('/leaders/references/save', [LeaderController::class, 'saveLeadersCandidates'])->name('backstage.references.save');
 });
