@@ -39,7 +39,7 @@ class LoginController extends Controller
                 'family_name' => $user->user['family_name'],
                 'email' => $user->getEmail(),
                 'password' => Hash::make($user->id),
-                'role_id' => 3,
+                'role_id' => 2,
             ]);
 
             auth()->login($new_user, true);
