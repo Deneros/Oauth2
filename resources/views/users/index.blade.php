@@ -31,9 +31,14 @@
 </div>
 @if ($user_role !== 'usuario')
 <button class="button button--small" id="show-register-form" type="button">Agregar Lider</button>
+<br>
+<button class="button button--small" id="show-register-form-candidate" type="button">Agregar Candidato</button>
 
-<div class="register-form-container">
-    @include('register.register_form', ['identificationTypes' => $identificationTypes, 'role' => $user_role])
+<div class="register-form-container container--invisible">
+    @include('register.register_leader', ['identificationTypes' => $identificationTypes, 'cities'=>$cities])
+</div>
+<div class="register-form-container-candidate container--invisible">
+    @include('register.register_candidate', ['identificationTypes' => $identificationTypes, 'candidate_type'=>$candidate_type, 'cities'=>$cities])
 </div>
 @endif
 
@@ -42,6 +47,10 @@
     document.getElementById('show-register-form').addEventListener('click', function() {
         var registerFormContainer = document.querySelector('.register-form-container');
         registerFormContainer.style.display = 'block';
+    });
+    document.getElementById('show-register-form-candidate').addEventListener('click', function() {
+        var registerFormContainerCandidate = document.querySelector('.register-form-container-candidate');
+        registerFormContainerCandidate.style.display = 'block';
     });
 </script>
 @endsection
