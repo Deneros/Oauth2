@@ -34,17 +34,49 @@
 <h2>Lideres y sus candidatos</h2>
 
 <!-- Lista para mostrar líderes y sus candidatos -->
-<ul>
-    @foreach($leaders as $leader)
-    <li>
-        {{ $leader->first_name }} {{ $leader->last_name }} -
-        @if($leader->candidate)
-        {{ $leader->candidate->first_name }} {{ $leader->candidate->last_name }} (Candidate)
-        @else
-        No Candidate Assigned
-        @endif
-    </li>
-    @endforeach
-</ul>
+<table>
+    <thead>
+        <tr>
+            <th>Nombre del lider</th>
+            <th>Nombre del candidato</th>
+            <th>Tipo de candidato</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($leaders as $leader)
+        <tr>
+            <td>{{ $leader->first_name }} {{ $leader->last_name }}</td>
+            <td>
+                @if($leader->candidates->count() > 0)
+                @foreach($leader->candidates as $candidate)
+                {{ $candidate->first_name }} {{ $candidate->last_name }}
+                @endforeach
+                @else
+                No tiene candidato asignado
+                @endif
+            </td>
+            <td>
+                @if($leader->candidates->count() > 0)
+                @foreach($leader->candidates as $candidate)
+                {{ $candidate->typeCandidate->name }}
+                @endforeach
+                @endif
+            </td>
+            <td>
+                @if($leader->candidates->count() > 0)
+                @foreach($leader->candidates as $candidate)
+                <form method="POST" action="{{ route('leader.remove_candidate', ['leader' => $leader->id, 'candidate' => $candidate->id]) }}">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit">Quitar Candidato</button>
+                </form>
+                @endforeach
+                @endif
+            </td>
+        </tr>
+        @endforeach
+    </tbody>
+</table>
 
 @endsection
