@@ -4,7 +4,6 @@
 <head>
     <title>Iniciar sesión</title>
     <style>
-
         body {
             font-family: 'Montserrat', sans-serif;
             margin: 0;
@@ -21,7 +20,7 @@
         .login-form {
             font-weight: bold;
             max-height: 90%;
-            max-width: 60%;
+            max-width: 80%;
             background-color: #fff;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -121,10 +120,12 @@
         }
 
         .logo {
-            width: 150px;
+            width: 80%;
+            margin: auto;
+            display: block;
         }
 
-        .login-content{
+        .login-content {
             margin-top: 6rem;
         }
     </style>
@@ -134,7 +135,7 @@
     <div class="container">
         <div class="login-form">
             <div class="form-content">
-                <img class="logo" src="{{ asset('img/logo-independientes-3.png') }}" alt="Imagen">
+                <img class="logo" src="{{ asset('img/logo-partidos-2.png') }}" alt="Imagen">
 
                 <div class="login-content">
                     <h1>Iniciar Sesión</h1>
