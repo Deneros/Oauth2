@@ -50,7 +50,7 @@ class RegisterController extends Controller
             'role' => 'nullable|string'
         ]);
 
-        $role_id = Role::where('name', $request->input('role'))->first()->id;
+        // $role_id = Role::where('name', $request->input('role'))->first()->id;
 
         $user = new User();
         $user->name = $request->input('name');
@@ -59,12 +59,12 @@ class RegisterController extends Controller
         $user->password = Hash::make($request->input('password'));
         $user->identification_type_id = $request->input('identification_type');
         $user->identification_number = $request->input('identification_number');
-        $user->role_id = $role_id;
+        $user->role_id = 2;
         $user->save();
 
-        if ($user->role_id != 3) {
-            return redirect()->back()->with('success', 'Usuario creado exitosamente.');
-        }
+        // if ($user->role_id != 3) {
+        //     return redirect()->back()->with('success', 'Usuario creado exitosamente.');
+        // }
 
 
         return redirect()->route('login')->with('success', 'Registro exitoso. Por favor, inicia sesión.');
