@@ -47,6 +47,9 @@ Route::middleware(['auth'])->group(function () {
 
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/personalization/home', [HomeController::class, 'showPersonalizationForm'])->name('personalization.home');
+    Route::post('/personalization/home', [HomeController::class, 'updatePersonalization'])->name('personalization.home.update');
+
     Route::get('/meetings', [MeetingController::class, 'index'])->name('meetings.index');
     Route::post('/create-meeting', [MeetingController::class, 'store'])->name('meetings.store');
     Route::post('/meetings/{meeting}/mark-completed', [MeetingController::class, 'markCompleted'])->name('meetings.markCompleted');
