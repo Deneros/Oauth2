@@ -46,6 +46,7 @@ class ReportController extends Controller
         $citiesOfResidence = City::all();
 
         $results = $formData->get();
+        $totalResults = $results->count();
 
         $currentDate = now();
         $results->each(function ($result) use ($currentDate) {
@@ -63,6 +64,6 @@ class ReportController extends Controller
             $result->number_of_children = $result->children_count ?? 0;
         });
 
-        return view('reports.index', compact('results', 'genders', 'housingTypes', 'identificationTypes', 'citiesOfBirth', 'citiesOfResidence'));
-    }
+
+        return view('reports.index', compact('results', 'genders', 'housingTypes', 'identificationTypes', 'citiesOfBirth', 'citiesOfResidence', 'totalResults'));    }
 }
