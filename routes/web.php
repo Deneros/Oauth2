@@ -32,12 +32,6 @@ Route::get('/login/google/callback', [LoginController::class, 'handleGoogleCallb
 
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/meetings', [MeetingController::class, 'index'])->name('meetings.index');
-    Route::post('/create-meeting', [MeetingController::class, 'store'])->name('meetings.store');
-    Route::post('/meetings/{id}/mark-completed', [MeetingController::class, 'markCompleted'])->name('meetings.markCompleted');
-    Route::post('/meetings/{meeting}/attach-document', [MeetingController::class, 'attachDocument'])->name('meetings.attachDocument');
-    Route::get('meetings/{id}/download', [MeetingController::class, 'downloadDocument'])->name('meetings.downloadDocument');
-
     Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
     Route::post('/reports/generate', [ReportController::class, 'generate'])->name('reports.generate');
 
@@ -53,6 +47,13 @@ Route::middleware(['auth'])->group(function () {
 
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/meetings', [MeetingController::class, 'index'])->name('meetings.index');
+    Route::post('/create-meeting', [MeetingController::class, 'store'])->name('meetings.store');
+    Route::post('/meetings/{meeting}/mark-completed', [MeetingController::class, 'markCompleted'])->name('meetings.markCompleted');
+    Route::post('/meetings/{meeting}/attach-document', [MeetingController::class, 'attachDocument'])->name('meetings.attachDocument');
+    Route::get('meetings/{id}/download', [MeetingController::class, 'downloadDocument'])->name('meetings.downloadDocument');
+
+
     Route::get('/backstage', [UserController::class, 'index'])->name('backstage.user');
     Route::get('/users-edit/{user}', [UserController::class, 'editRole'])->name('users.edit_role');
     Route::put('/users-update/{user}', [UserController::class, 'update'])->name('users.update_role');
