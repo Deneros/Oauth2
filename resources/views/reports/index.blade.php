@@ -76,6 +76,7 @@
             <th>Edad</th>
             <th>Tiene hijos</th>
             <th>Cantidad de hijos</th>
+            <th>Total de Resultados</th>
         </tr>
     </thead>
     <tbody>
@@ -91,6 +92,7 @@
             <td>{{ $result->age }}</td>
             <td>{{ $result->has_children ? 'Sí' : 'No' }}</td>
             <td>{{ $result->number_of_children }}</td>
+            <td>{{ $totalResults }}</td>
         </tr>
         @endforeach
     </tbody>

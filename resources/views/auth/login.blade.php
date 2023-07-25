@@ -153,6 +153,12 @@
                             <a href="{{ route('register') }}" class="register-btn">Registrarse</a>
                         </div>
                     </form>
+
+                    @if ($errors->any())
+                    <div style="color: red; margin-top: 10px;">
+                        {{ $errors->first('message') }}
+                    </div>
+                    @endif
                     <hr>
                     <div class="google-login">
                         <a href="{{ route('login.google') }}" class="google-btn">Iniciar sesión con Google</a>

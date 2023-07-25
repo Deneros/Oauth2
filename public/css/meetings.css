@@ -1,68 +1,3 @@
-/* h1 {
-        text-align: center;
-        margin-bottom: 20px;
-    } */
-
-/* .container {
-    display: flex;
-    justify-content: space-between;
-} */
-
-.column {
-    flex: 1;
-    margin-right: 20px;
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    display: block;
-    font-weight: bold;
-}
-
-.form-group input[type="text"],
-.form-group input[type="number"],
-.form-group input[type="date"],
-.form-group select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-.form-actions {
-    margin-top: 20px;
-    text-align: center;
-}
-
-.row {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-
-/* .form-actions button[type="submit"] {
-    padding: 10px 20px;
-    background-color: #4caf50;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-} */
-
-.alert {
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    color: #333;
-    background-color: #f5f5f5;
-}
-
 .meetings-list {
     list-style: none;
     padding: 0;
@@ -92,16 +27,6 @@
     margin-top: 10px;
 }
 
-.meeting-item .actions button {
-    padding: 6px 12px;
-    margin-right: 10px;
-    background-color: #4caf50;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
 .meeting-item .actions form {
     display: inline;
 }
@@ -119,4 +44,28 @@
     border: none;
     border-radius: 4px;
     text-decoration: none;
+}
+
+input[type="file"] {
+    position: absolute;
+    left: -9999px;
+}
+
+.file-input-label {
+    text-align: center;
+    display: block;
+    padding: 10px 20px;
+    background-color: #cc0000;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    /* padding: 3px; */
+}
+
+.file-input-label:hover {
+    background-color: #990000;
 }

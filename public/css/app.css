@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;1,500&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;1,500&display=swap");
 
 body {
     font-family: Arial, sans-serif;
@@ -7,7 +6,6 @@ body {
     height: 100vh;
     box-sizing: border-box;
     background-color: #f5f5f5;
-
 }
 
 .alert {
@@ -17,4 +15,38 @@ body {
     border-radius: 4px;
     color: #333;
     background-color: #f5f5f5;
+}
+
+.button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #cc0000;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin: auto;
+}
+
+.button--small {
+    width: 30%;
+}
+
+.button--medium {
+    width: 60%;
+}
+
+button:hover {
+    background-color: #990000;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.column {
+    flex: 1;
+    margin-right: 20px;
 }

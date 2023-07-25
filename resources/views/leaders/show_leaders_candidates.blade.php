@@ -6,26 +6,33 @@
 
 <h2>Crear referencias</h2>
 
-<!-- Select para líderes -->
-<form action="{{ route('backstage.references.save') }}" method="POST">
+<form class="form-container__form form-container__form--medium" action="{{ route('backstage.references.save') }}" method="POST">
     @csrf
-    <label for="selectLeader">Select Leader:</label>
-    <select name="leader_id" id="selectLeader">
-        <option value="">Select a Leader</option>
-        @foreach($leaders as $leader)
-        <option value="{{ $leader->id }}">{{ $leader->first_name }} {{ $leader->last_name }}</option>
-        @endforeach
-    </select>
 
-    <label for="selectCandidate">Select Candidate:</label>
-    <select name="candidate_id" id="selectCandidate">
-        <option value="">Select a Candidate</option>
-        @foreach($candidates as $candidate)
-        <option value="{{ $candidate->id }}">{{ $candidate->first_name }} {{ $candidate->last_name }}</option>
-        @endforeach
-    </select>
+    <div class="form-columns form-columns--single form-columns--compact">
 
-    <button type="submit">Save</button>
+        <div class="form-group">
+            <label for="selectLeader">Selecciona un lider:</label>
+            <select name="leader_id" id="selectLeader">
+                <option value="">Escoge una opcion</option>
+                @foreach($leaders as $leader)
+                <option value="{{ $leader->id }}">{{ $leader->first_name }} {{ $leader->last_name }}</option>
+                @endforeach
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="selectCandidate">Selecciona un candidato:</label>
+            <select name="candidate_id" id="selectCandidate">
+                <option value="">Escoge una opcion</option>
+                @foreach($candidates as $candidate)
+                <option value="{{ $candidate->id }}">{{ $candidate->first_name }} {{ $candidate->last_name }}</option>
+                @endforeach
+            </select>
+        </div>
+
+    </div>
+    <button class="button button--small" type="submit">Guardar</button>
 </form>
 
 
@@ -33,7 +40,6 @@
 
 <h2>Lideres y sus candidatos</h2>
 
-<!-- Lista para mostrar líderes y sus candidatos -->
 <table>
     <thead>
         <tr>

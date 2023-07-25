@@ -34,6 +34,12 @@
 <br>
 <button class="button button--small" id="show-register-form-candidate" type="button">Agregar Candidato</button>
 
+@if (session('success'))
+<div class="alert alert-success">
+    {{ session('success') }}
+</div>
+@endif
+
 <div class="register-form-container container--invisible">
     @include('register.register_leader', ['identificationTypes' => $identificationTypes, 'cities'=>$cities])
 </div>

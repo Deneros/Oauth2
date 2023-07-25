@@ -115,8 +115,6 @@
         <label for="password_confirmation">Confirmar contraseña:</label>
         <input type="password" name="password_confirmation" id="password_confirmation" required>
 
-        @if ($role !== 'usuario')
-
         <label for="identification_type">Tipo de identificación:</label>
         <div class="select-container">
             <select name="identification_type" id="identification_type" required>
@@ -131,13 +129,9 @@
         <div class="alert alert-danger">Este campo es requerido</div>
         @enderror
 
-
-
         <label for="identification_number">Número de identificación:</label>
         <input type="text" name="identification_number" id="identification_number" required>
 
-        <input type="hidden" name="role" value="{{ $role }}">
-        @endif
         <label>
             <input type="checkbox" name="terms" required>
             Acepto los términos y condiciones

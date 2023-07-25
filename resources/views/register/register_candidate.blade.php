@@ -1,7 +1,7 @@
 <form class="form-container__form" method="POST" action="{{ route('register_candidate') }}">
     @csrf
 
-    <div class="form-columns">
+    <div class="form-columns form-columns--single form-columns--compact">
         <h2>Información del Candidato</h2>
 
         @if ($errors->any())
@@ -78,5 +78,5 @@
 
     </div>
 
-    <button type="submit">Registrar Candidato</button>
+    <button class="button" type="submit">Registrar Candidato</button>
 </form>

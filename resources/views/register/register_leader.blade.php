@@ -1,7 +1,7 @@
 <form class="form-container__form" method="POST" action="{{ route('register_leader') }}">
     @csrf
 
-    <div class="form-columns">
+    <div class="form-columns form-columns--single form-columns--compact">
         <h2>Información del Líder</h2>
 
         @if ($errors->any())
@@ -66,5 +66,5 @@
 
     </div>
 
-    <button type="submit">Registrar Líder</button>
+    <button class="button" type="submit">Registrar Líder</button>
 </form>

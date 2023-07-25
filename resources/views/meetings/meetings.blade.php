@@ -13,43 +13,59 @@
         </div>
         @endif
 
-        <form method="POST" action="{{ route('meetings.store') }}" class="form-container">
+        <form class="form-container__form " method="POST" action="{{ route('meetings.store') }}" class="form-container">
             @csrf
 
-            <div class="form-group">
-                <label for="title">Título:</label>
-                <input type="text" name="title" id="title">
-                @error('title')
-                <div class="alert">{{ $message }}</div>
-                @enderror
-            </div>
+            <div class="form-columns form-columns--single form-columns--compact">
+                <div class="form-group">
+                    <label for="leader">Líder:</label>
+                    <select name="leader" id="leader">
+                        <option value="">Seleccione un líder</option>
+                        @foreach ($leaders as $id => $leader)
+                        <option value="{{ $id }}">{{ $leader }}</option>
+                        @endforeach
+                    </select>
+                    @error('leader')
+                    <div class="alert">{{ $message }}</div>
+                    @enderror
+                </div>
 
-            <div class="form-group">
-                <label for="location">Ubicación:</label>
-                <input type="text" name="location" id="location">
-                @error('location')
-                <div class="alert">{{ $message }}</div>
-                @enderror
-            </div>
+                <div class="form-group">
+                    <label for="title">Título:</label>
+                    <input type="text" name="title" id="title">
+                    @error('title')
+                    <div class="alert">{{ $message }}</div>
+                    @enderror
+                </div>
 
-            <div class="form-group">
-                <label for="date_meeting">Fecha y hora de la reunión:</label>
-                <input type="datetime-local" name="date_meeting" id="date_meeting">
-                @error('date_meeting')
-                <div class="alert">{{ $message }}</div>
-                @enderror
-            </div>
+                <div class="form-group">
+                    <label for="location">Ubicación:</label>
+                    <input type="text" name="location" id="location">
+                    @error('location')
+                    <div class="alert">{{ $message }}</div>
+                    @enderror
+                </div>
 
-            <div class="form-group">
-                <label for="description">Descripción:</label>
-                <textarea name="description" id="description" rows="4"></textarea>
-                @error('description')
-                <div class="alert">{{ $message }}</div>
-                @enderror
-            </div>
+                <div class="form-group">
+                    <label for="date_meeting">Fecha y hora de la reunión:</label>
+                    <input type="datetime-local" name="date_meeting" id="date_meeting">
+                    @error('date_meeting')
+                    <div class="alert">{{ $message }}</div>
+                    @enderror
+                </div>
 
-            <div class="form-actions">
-                <button class="button" type="submit">Crear Reunión</button>
+                <div class="form-group">
+                    <label for="description">Descripción:</label>
+                    <textarea name="description" id="description" rows="4"></textarea>
+                    @error('description')
+                    <div class="alert">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="form-actions">
+                    <button class="button" type="submit">Crear Reunión</button>
+                </div>
+
             </div>
         </form>
     </div>
@@ -100,10 +116,10 @@
                     <form action="{{ route('meetings.attachDocument', $meeting->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div>
-                            <label for="document">Adjuntar documento:</label>
+                            <label class="file-input-label for=" document">Adjuntar documento:</label>
                             <input type="file" name="document" id="document">
                         </div>
-                        <button class="button" type="submit">Adjuntar</button>
+                        <button class="button" type="submit">Guardar</button>
                     </form>
                     @endif
                     @if ($meeting->document)

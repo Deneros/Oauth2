@@ -2,10 +2,19 @@ h1 {
     text-align: center;
     margin-bottom: 20px;
 }
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
 
 .form-group label {
     display: block;
     font-weight: bold;
+}
+
+.form-container__form--medium {
+    width: 60%;
+    margin: auto;
 }
 
 .form-group input[type="text"],
@@ -22,6 +31,11 @@ h1 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 40px;
+    padding-bottom: 10px;
+}
+
+.form-columns--compact {
+    grid-gap: 10px;
 }
 
 .form-container {
@@ -33,25 +47,6 @@ h1 {
     margin-top: 20px;
 }
 
-.button{
-    display: block;
-    width: 100%;
-    padding: 10px;
-    background-color: #cc0000;
-    color: #fff;
-    border: none;
-    cursor: pointer;
+.form-columns--single {
+    grid-template-columns: 1fr;
 }
-
-.button--small {
-    width: 30%;
-}
-
-.button--medium {
-    width: 60%;
-}
-
-button:hover {
-    background-color: #990000;
-}
-
