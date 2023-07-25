@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Meeting;
+use App\Models\Leader;
+use App\Models\FormData;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -18,8 +20,14 @@ class MeetingController extends Controller
     {
         $user = Auth::user();
         $meetings = $user->meetings()->get();
+        $leaders = Leader::all()->map(function ($leader) {
+            return [
+                'id' => $leader->id,
+                'name' => $leader->first_name . ' ' . $leader->last_name,
+            ];
+        })->pluck('name', 'id');
 
-        return view('meetings.meetings', compact('meetings'));
+        return view('meetings.meetings', compact('meetings', 'leaders'));
     }
 
     public function create()
@@ -34,6 +42,7 @@ class MeetingController extends Controller
             'description' => 'required|string',
             'date_meeting' => 'required|date',
             'location' => 'required|string',
+            'leader' => 'required|exists:leaders,id',
         ]);
 
         $meeting = new Meeting();
@@ -43,16 +52,13 @@ class MeetingController extends Controller
         $meeting->location = $request->input('location');
         $meeting->save();
 
-        $user = Auth::user();
-        $related_users = DB::table('form_data')
-            ->join('users', 'form_data.user_id', '=', 'users.id')
-            ->where('form_data.moderator_id', $user->id)
-            ->pluck('users.id')
-            ->toArray();
+        $leader_id = $request->input('leader');
 
-        $related_users[] = $user->id;
+        $formData = FormData::where('leader_id', $leader_id)->get();
+        $related_users = $formData->pluck('user_id')->toArray();
 
         $meeting->users()->attach($related_users);
+        $meeting->users()->attach($leader_id, ['leader_id' => $leader_id]);
 
         return redirect()->route('meetings.index')->with('success', 'La reunión ha sido creada exitosamente.');
     }
