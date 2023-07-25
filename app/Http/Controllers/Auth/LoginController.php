@@ -55,7 +55,7 @@ class LoginController extends Controller
         if (Auth::attempt($credentials)) {
             return redirect('/form');
         } else {
-            return redirect()->back()->withErrors(['message' => 'Invalid credentials']);
+            return redirect()->back()->withErrors(['message' => 'Credenciales inválidas. Por favor, verifica tu correo electrónico y contraseña.']);
         }
     }
 
