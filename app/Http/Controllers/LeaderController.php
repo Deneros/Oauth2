@@ -44,7 +44,7 @@ class LeaderController extends Controller
             'city_of_birth_id' => $request->input('city_of_birth'),
         ]);
 
-        return redirect()->route('home.index')->with('success', 'Líder registrado exitosamente.');
+        return redirect()->route('backstage.user')->with('success', 'Líder registrado exitosamente.');
     }
 
     public function saveLeadersCandidates(Request $request)

@@ -37,6 +37,6 @@ class CandidateController extends Controller
             'city_of_birth_id' => $request->input('city_of_birth'),
         ]);
 
-        return redirect()->route('home.index')->with('success', 'Candidato registrado exitosamente.');
+        return redirect()->route('backstage.user')->with('success', 'Candidato registrado exitosamente.');
     }
 }
