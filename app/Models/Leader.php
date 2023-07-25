@@ -26,4 +26,9 @@ class Leader extends Model
         return $this->belongsToMany(Candidate::class, 'leader_candidate', 'leader_id', 'candidate_id')
             ->withTimestamps();
     }
+
+    public function formData()
+    {
+        return $this->hasMany(FormData::class, 'leader_id');
+    }
 }
