@@ -11,17 +11,6 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\LeaderController;
 use App\Http\Controllers\CandidateController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Route::get('/', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'auth'])->name('login.auth');
 Route::get('/register/{role?}', [RegisterController::class, 'index'])->name('register');
@@ -34,6 +23,7 @@ Route::get('/login/google/callback', [LoginController::class, 'handleGoogleCallb
 Route::middleware(['auth'])->group(function () {
     Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
     Route::post('/reports/generate', [ReportController::class, 'generate'])->name('reports.generate');
+    Route::get('/reports/generate-excel', [ReportController::class,'generateExcel'])->name('reports.generate-excel');
 
 
     Route::get('/form', [FormController::class, 'index'])->name('form.index');
@@ -55,7 +45,15 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::post('/meetings/{meeting}/mark-completed', [MeetingController::class, 'markCompleted'])->name('meetings.markCompleted');
     Route::post('/meetings/{meeting}/attach-document', [MeetingController::class, 'attachDocument'])->name('meetings.attachDocument');
     Route::get('meetings/{id}/download', [MeetingController::class, 'downloadDocument'])->name('meetings.downloadDocument');
+    Route::get('/meetings/{meeting}/edit', [MeetingController::class, 'edit'])->name('meetings.edit');
+    Route::put('/meetings/{meeting}', [MeetingController::class, 'update'])->name('meetings.update');
 
+    Route::get('/form/{id}/edit', [FormController::class, 'edit'])->name('form.edit');
+    Route::put('/form/{id}', [FormController::class, 'update'])->name('form.update');
+
+
+    Route::get('/leaders', [LeaderController::class, 'index'])->name('leaders.index');
+    Route::get('/candidates', [CandidateController::class, 'index'])->name('candidates.index');
 
     Route::get('/backstage', [UserController::class, 'index'])->name('backstage.user');
     Route::get('/users-edit/{user}', [UserController::class, 'editRole'])->name('users.edit_role');
