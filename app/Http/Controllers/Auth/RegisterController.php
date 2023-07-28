@@ -18,7 +18,7 @@ class RegisterController extends Controller
     public function index(string $role = null)
     {
         $validRoles = ['admin', 'usuario', 'moderador'];
-        $identificationTypes = IdentificationType::pluck('name', 'id');
+        $identificationTypes = IdentificationType::pluck('description', 'id');
 
         if ($role === null) {
             return view('register.register', compact('role', 'identificationTypes'));
