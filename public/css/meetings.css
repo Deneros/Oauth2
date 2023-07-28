@@ -50,7 +50,7 @@
     left: -9999px;
 } */
 
-.file-input-label {
+/* .file-input-label {
     text-align: center;
     display: block;
     padding: 10px 20px;
@@ -59,6 +59,19 @@
     border: none;
     cursor: pointer;
     margin: 5px auto;
+} */
+.custom-file-upload {
+    display: inline-block;
+    background-color: #cc0000;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px auto;
+}
+
+.custom-file-upload input[type="file"] {
+    display: none;
 }
 
 .file-input-label:hover {

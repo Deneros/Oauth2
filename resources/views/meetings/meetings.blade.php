@@ -117,7 +117,7 @@
                     <form action="{{ route('meetings.attachDocument', $meeting->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div>
-                            <label class="file-input-label for=" document">Adjuntar documento:</label>
+                            <label class="custom-file-upload" for=" document">Adjuntar documento:</label>
                             <input type="file" name="document" id="document">
                         </div>
                         <button class="button" type="submit">Guardar</button>

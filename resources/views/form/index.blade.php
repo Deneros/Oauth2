@@ -175,6 +175,7 @@
                     <label for="children_live_with" class="form-group__label">Cuántos viven con usted:</label>
                     <select name="children_live_with" id="children_live_with" class="form-group__input">
                         <option value="" disabled selected>Selecciona una opción</option>
+                        <option value="0">0</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -197,6 +198,7 @@
                     <label for="adult_children" class="form-group__label">Cuántos son mayores de edad:</label>
                     <select name="adult_children" id="adult_children" class="form-group__input">
                         <option value="" disabled selected>Selecciona una opción</option>
+                        <option value="0">0</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -285,6 +287,7 @@
                 <input type="checkbox" name="topics[]" value="8">Salud<br>
                 <input type="checkbox" name="topics[]" value="9">Recreación<br>
                 <input type="checkbox" name="topics[]" value="10">Turismo<br>
+                <input type="checkbox" name="topics[]" value="11">tecnologías de la información (tics)<br>
                 @if ($errors->has('topics'))
                 <div class="alert alert-danger">Este campo debe tener al menos 3 selecciones</div>
                 @endif
