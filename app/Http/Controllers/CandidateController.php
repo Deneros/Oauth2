@@ -8,6 +8,13 @@ use App\Models\Candidate;
 
 class CandidateController extends Controller
 {
+    public function index()
+    {
+        $candidates = Candidate::all();
+        // dd($candidates);
+        return view('candidate.index', compact('candidates'));
+    }
+
     public function store(Request $request)
     {
         // dd($request);

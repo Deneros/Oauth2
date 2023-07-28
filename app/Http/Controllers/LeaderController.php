@@ -9,6 +9,14 @@ use App\Models\Candidate;
 
 class LeaderController extends Controller
 {
+    public function index()
+    {
+        $leaders = Leader::all();
+        // dd($leaders);
+        return view('leaders.index', compact('leaders'));
+
+    }
+
     public function showLeadersCandidates()
     {
         $leaders = Leader::all();
