@@ -75,7 +75,7 @@
                 <form method="POST" action="{{ route('leader.remove_candidate', ['leader' => $leader->id, 'candidate' => $candidate->id]) }}">
                     @csrf
                     @method('DELETE')
-                    <button type="submit">Quitar Candidato</button>
+                    <button class="button button--medium" type="submit">Quitar Candidato</button>
                 </form>
                 @endforeach
                 @endif
