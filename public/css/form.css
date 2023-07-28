@@ -50,3 +50,19 @@ h2 {
 .form-columns--single {
     grid-template-columns: 1fr;
 }
+
+.form-textarea {
+    width: 98%;
+    resize: vertical;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* Estilos para el textarea de tamaño grande (modificador) */
+.form-textarea--large {
+    height: 200px;
+}
+

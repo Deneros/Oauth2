@@ -36,20 +36,19 @@
 }
 
 .meeting-item .actions a {
-    margin-top: 10px;
-    display: inline-block;
-    padding: 6px 12px;
+    text-align: center;
+    margin: 5px auto;
+    /* display: block; */
     background-color: #337ab7;
     color: #fff;
     border: none;
-    border-radius: 4px;
     text-decoration: none;
 }
 
-input[type="file"] {
+/* input[type="file"] {
     position: absolute;
     left: -9999px;
-}
+} */
 
 .file-input-label {
     text-align: center;
@@ -59,11 +58,7 @@ input[type="file"] {
     color: #fff;
     border: none;
     cursor: pointer;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    /* padding: 3px; */
+    margin: 5px auto;
 }
 
 .file-input-label:hover {
