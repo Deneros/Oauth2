@@ -25,7 +25,8 @@ class TopicSeeder extends Seeder
             'Educación',
             'Salud',
             'Recreación',
-            'Turismo'
+            'Turismo',
+            'tecnologías de la información (tics)'
         ];
 
         foreach ($topics as $topic) {
