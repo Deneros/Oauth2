@@ -33,16 +33,9 @@ class LoginController extends Controller
 
         if ($existing_user) {
             auth()->login($existing_user, true);
+            return redirect('/home');
         } else {
-            $new_user = User::create([
-                'name' => $user->user['given_name'],
-                'family_name' => $user->user['family_name'],
-                'email' => $user->getEmail(),
-                'password' => Hash::make($user->id),
-                'role_id' => 2,
-            ]);
-
-            auth()->login($new_user, true);
+            return redirect()->route('login')->with('error', 'Debe registrarse primero con su correo electrónico.');
         }
 
         return redirect('/home');
