@@ -105,16 +105,29 @@ class MeetingController extends Controller
     }
 
 
-    public function edit($id)
+    public function edit(Meeting $meeting)
     {
-        //
+        return view('meetings.edit', compact('meeting'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Meeting $meeting)
     {
-        //
-    }
+        $request->validate([
+            'title' => 'required|string',
+            'description' => 'required|string',
+            'location' => 'required|string',
+            'date_meeting' => 'required|date_format:Y-m-d\TH:i',
+        ]);
 
+        $meeting->update([
+            'title' => $request->input('title'),
+            'description' => $request->input('description'),
+            'location' => $request->input('location'),
+            'date_meeting' => $request->input('date_meeting'),
+        ]);
+
+        return redirect()->route('meetings.index')->with('success', 'La reunión se ha actualizado correctamente.');
+    }
     public function destroy($id)
     {
         //
