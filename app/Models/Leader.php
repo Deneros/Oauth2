@@ -31,4 +31,14 @@ class Leader extends Model
     {
         return $this->hasMany(FormData::class, 'leader_id');
     }
+
+    public function identificationType()
+    {
+        return $this->belongsTo(IdentificationType::class);
+    }
+
+    public function cityOfBirth()
+    {
+        return $this->belongsTo(City::class, 'city_of_birth_id');
+    }
 }

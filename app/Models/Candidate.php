@@ -33,4 +33,14 @@ class Candidate extends Model
         return $this->belongsToMany(Leader::class, 'leader_candidate', 'candidate_id', 'leader_id')
             ->withTimestamps();
     }
+
+    public function identificationType()
+    {
+        return $this->belongsTo(IdentificationType::class);
+    }
+
+    public function cityOfBirth()
+    {
+        return $this->belongsTo(City::class, 'city_of_birth_id');
+    }
 }
