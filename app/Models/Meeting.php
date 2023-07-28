@@ -13,6 +13,7 @@ class Meeting extends Model
         'title',
         'description',
         'moderator_id',
+        'leader_id'
     ];
 
     public function users()

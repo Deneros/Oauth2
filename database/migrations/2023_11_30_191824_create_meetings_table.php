@@ -21,6 +21,8 @@ return new class extends Migration
             $table->dateTime('date_meeting');
             $table->text('document_path')->nullable();
             $table->boolean('completed')->default(0);
+            $table->unsignedBigInteger('leader_id')->nullable();
+            $table->foreign('leader_id')->references('id')->on('leaders')->onDelete('cascade');
             $table->timestamps();
         });
     }

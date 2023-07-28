@@ -44,21 +44,21 @@ class MeetingController extends Controller
             'location' => 'required|string',
             'leader' => 'required|exists:leaders,id',
         ]);
+        $leader_id = $request->input('leader');
 
         $meeting = new Meeting();
         $meeting->title = $request->input('title');
         $meeting->description = $request->input('description');
         $meeting->date_meeting = $request->input('date_meeting');
         $meeting->location = $request->input('location');
+        $meeting->leader_id = $leader_id;
         $meeting->save();
 
-        $leader_id = $request->input('leader');
 
         $formData = FormData::where('leader_id', $leader_id)->get();
         $related_users = $formData->pluck('user_id')->toArray();
 
         $meeting->users()->attach($related_users);
-        $meeting->users()->attach($leader_id, ['leader_id' => $leader_id]);
 
         return redirect()->route('meetings.index')->with('success', 'La reunión ha sido creada exitosamente.');
     }
