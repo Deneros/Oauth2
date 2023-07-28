@@ -11,32 +11,15 @@
         {{ session('success') }}
     </div>
     @endif
+    @if (session('warning'))
+    <div class="alert alert-danger">{{ session('warning') }}</div>
+    @endif
+
 
     <form class="form-container__form" method="POST" action="{{ route('form.store') }}">
         @csrf
 
         <div class="form-columns">
-            <div class="form-group">
-                <label for="identification_type" class="form-group__label">Tipo de identificación:</label>
-                <select name="identification_type" id="identification_type" class="form-group__input">
-                    <option value="" disabled selected>Selecciona una opción</option>
-                    @foreach($identificationTypes as $id => $name)
-                    <option value="{{ $id }}">{{ $name }}</option>
-                    @endforeach
-                </select>
-                @error('identification_type')
-                <div class="alert alert-danger">Este campo es requerido</div>
-                @enderror
-            </div>
-
-            <div class="form-group">
-                <label for="identification_number" class="form-group__label">Número de identificación:</label>
-                <input type="text" name="identification_number" id="identification_number" class="form-group__input">
-                @error('identification_number')
-                <div class="alert alert-danger">Este campo es requerido</div>
-                @enderror
-            </div>
-
             <div class="form-group">
                 <label for="gender" class="form-group__label">Género:</label>
                 <select name="gender" id="gender" class="form-group__input">
@@ -334,4 +317,3 @@
     }
 </script>
 @endsection
-
