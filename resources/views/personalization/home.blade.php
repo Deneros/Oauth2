@@ -23,7 +23,7 @@
 
     <div class="form-group">
         <label for="welcome_description">Descripción de Bienvenida:</label>
-        <textarea name="welcome_description" id="welcome_description" rows="4">{{ $homeInfo->welcome_description ?? '' }}</textarea>
+        <textarea class="form-textarea" name="welcome_description" id="welcome_description" rows="4">{{ $homeInfo->welcome_description ?? '' }}</textarea>
         @error('welcome_description')
         <div class="alert">{{ $message }}</div>
         @enderror
@@ -39,7 +39,7 @@
 
     <div class="form-group">
         <label for="program_description">Descripción del Programa de Gobierno:</label>
-        <textarea name="program_description" id="program_description" rows="4">{{ $homeInfo->program_description ?? '' }}</textarea>
+        <textarea class="form-textarea" name="program_description" id="program_description" rows="4">{{ $homeInfo->program_description ?? '' }}</textarea>
         @error('program_description')
         <div class="alert">{{ $message }}</div>
         @enderror
@@ -55,7 +55,7 @@
 
     <div class="form-group">
         <label for="about_description">Descripción de Acerca de Luis Fernando:</label>
-        <textarea name="about_description" id="about_description" rows="4">{{ $homeInfo->about_description ?? '' }}</textarea>
+        <textarea class="form-textarea" name="about_description" id="about_description" rows="4">{{ $homeInfo->about_description ?? '' }}</textarea>
         @error('about_description')
         <div class="alert">{{ $message }}</div>
         @enderror

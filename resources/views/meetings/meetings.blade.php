@@ -56,7 +56,7 @@
 
                 <div class="form-group">
                     <label for="description">Descripción:</label>
-                    <textarea name="description" id="description" rows="4"></textarea>
+                    <textarea class="form-textarea" name="description" id="description" rows="4"></textarea>
                     @error('description')
                     <div class="alert">{{ $message }}</div>
                     @enderror
@@ -107,6 +107,7 @@
                 </div>
                 <div class="actions">
                     @if (!$meeting->completed)
+                    <a href="{{ route('meetings.edit', $meeting->id) }}" class="button">Editar</a>
                     <form action="{{ route('meetings.markCompleted', $meeting->id) }}" method="POST">
                         @csrf
                         <button class="button" type="submit" onclick="return confirm('¿Estás seguro de marcar esta reunión como completada?')">Marcar como completada</button>
