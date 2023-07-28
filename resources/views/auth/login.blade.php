@@ -159,6 +159,12 @@
                         {{ $errors->first('message') }}
                     </div>
                     @endif
+
+                    @if (session('error'))
+                    <div style="color: red; margin-top: 10px;">
+                        {{ session('error') }}
+                    </div>
+                    @endif
                     <hr>
                     <div class="google-login">
                         <a href="{{ route('login.google') }}" class="google-btn">Iniciar sesión con Google</a>
