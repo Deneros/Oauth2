@@ -76,7 +76,7 @@
             <th>Edad</th>
             <th>Tiene hijos</th>
             <th>Cantidad de hijos</th>
-            <th>Total de Resultados</th>
+            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
@@ -92,11 +92,15 @@
             <td>{{ $result->age }}</td>
             <td>{{ $result->has_children ? 'Sí' : 'No' }}</td>
             <td>{{ $result->number_of_children }}</td>
-            <td>{{ $totalResults }}</td>
+            <td> <a href="{{ route('form.edit', ['id' => $result->id]) }}">Editar</a>
+            </td>
         </tr>
         @endforeach
     </tbody>
 </table>
+<br>
+Total resultados: {{ $totalResults }}
+<a href="{{ route('reports.generate-excel') }}" class="button button--small">Descargar Excel</a>
 @endif
 
 @endsection
